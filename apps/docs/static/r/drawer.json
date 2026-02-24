@@ -1,0 +1,54 @@
+{
+  "name": "drawer",
+  "type": "registry:ui",
+  "title": "Drawer",
+  "description": "A glass-styled bottom sheet drawer.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/drawer/drawer.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { Dialog as DialogPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    open = $bindable(false),\n    children,\n    ...restProps\n  }: {\n    open?: boolean;\n    children?: import(\"svelte\").Snippet;\n  } & Record<string, any> = $props();\n</script>\n\n<DialogPrimitive.Root bind:open {...restProps}>\n  {#if children}\n    {@render children()}\n  {/if}\n</DialogPrimitive.Root>\n",
+      "target": "components/ui/drawer/drawer.svelte"
+    },
+    {
+      "path": "ui/drawer/drawer-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { Dialog as DialogPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    ...restProps\n  }: {\n    class?: string;\n    children?: import(\"svelte\").Snippet;\n  } & Record<string, any> = $props();\n</script>\n\n<DialogPrimitive.Portal>\n  <DialogPrimitive.Overlay\n    class=\"fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n  />\n  <DialogPrimitive.Content\n    class={cn(\n      \"fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-2xl glass-heavy shadow-glass-lg\",\n      \"data-[state=open]:animate-[sheet-in-bottom_0.5s_cubic-bezier(0.32,0.72,0,1)] data-[state=closed]:animate-[sheet-out-bottom_0.3s_cubic-bezier(0.32,0.72,0,1)]\",\n      className\n    )}\n    {...restProps}\n  >\n    <div class=\"mx-auto mt-4 h-1.5 w-12 rounded-full bg-white/30\" />\n    {#if children}\n      {@render children()}\n    {/if}\n  </DialogPrimitive.Content>\n</DialogPrimitive.Portal>\n",
+      "target": "components/ui/drawer/drawer-content.svelte"
+    },
+    {
+      "path": "ui/drawer/drawer-header.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    ...restProps\n  }: { class?: string; children?: import(\"svelte\").Snippet } & Record<string, any> = $props();\n</script>\n\n<div class={cn(\"grid gap-1.5 p-4 text-center sm:text-left\", className)} {...restProps}>\n  {#if children}\n    {@render children()}\n  {/if}\n</div>\n",
+      "target": "components/ui/drawer/drawer-header.svelte"
+    },
+    {
+      "path": "ui/drawer/drawer-footer.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    ...restProps\n  }: { class?: string; children?: import(\"svelte\").Snippet } & Record<string, any> = $props();\n</script>\n\n<div class={cn(\"mt-auto flex flex-col gap-2 p-4\", className)} {...restProps}>\n  {#if children}\n    {@render children()}\n  {/if}\n</div>\n",
+      "target": "components/ui/drawer/drawer-footer.svelte"
+    },
+    {
+      "path": "ui/drawer/drawer-title.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { Dialog as DialogPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    ...restProps\n  }: { class?: string } & Record<string, any> = $props();\n</script>\n\n<DialogPrimitive.Title\n  class={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n  {...restProps}\n/>\n",
+      "target": "components/ui/drawer/drawer-title.svelte"
+    },
+    {
+      "path": "ui/drawer/drawer-description.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { Dialog as DialogPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    ...restProps\n  }: { class?: string } & Record<string, any> = $props();\n</script>\n\n<DialogPrimitive.Description\n  class={cn(\"text-sm text-muted-foreground\", className)}\n  {...restProps}\n/>\n",
+      "target": "components/ui/drawer/drawer-description.svelte"
+    },
+    {
+      "path": "ui/drawer/index.ts",
+      "type": "registry:ui",
+      "content": "import { Dialog as DialogPrimitive } from \"bits-ui\";\n\nexport { default as Drawer } from \"./drawer.svelte\";\nexport { default as DrawerContent } from \"./drawer-content.svelte\";\nexport { default as DrawerHeader } from \"./drawer-header.svelte\";\nexport { default as DrawerFooter } from \"./drawer-footer.svelte\";\nexport { default as DrawerTitle } from \"./drawer-title.svelte\";\nexport { default as DrawerDescription } from \"./drawer-description.svelte\";\n\nexport const DrawerTrigger = DialogPrimitive.Trigger;\nexport const DrawerClose = DialogPrimitive.Close;\n",
+      "target": "components/ui/drawer/index.ts"
+    }
+  ]
+}

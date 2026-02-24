@@ -1,0 +1,28 @@
+{
+  "name": "toast",
+  "type": "registry:ui",
+  "title": "Toast",
+  "description": "Glass-styled toast notifications.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/toast/toast-state.ts",
+      "type": "registry:ui",
+      "content": "import { writable } from \"svelte/store\";\n\nexport interface Toast {\n\tid: string;\n\ttitle?: string;\n\tdescription?: string;\n\tvariant?: \"default\" | \"destructive\";\n\tduration?: number;\n}\n\nlet count = 0;\n\nexport const toasts = writable<Toast[]>([]);\n\nexport function toast(options: Omit<Toast, \"id\">) {\n\tconst id = `toast-${++count}`;\n\tconst t: Toast = { id, duration: 4000, variant: \"default\", ...options };\n\ttoasts.update((all) => [...all, t]);\n\n\tif (t.duration && t.duration > 0) {\n\t\tsetTimeout(() => dismiss(id), t.duration);\n\t}\n\n\treturn id;\n}\n\nexport function dismiss(id: string) {\n\ttoasts.update((all) => all.filter((t) => t.id !== id));\n}\n",
+      "target": "components/ui/toast/toast-state.ts"
+    },
+    {
+      "path": "ui/toast/toaster.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { toasts, dismiss } from \"./toast-state.js\";\n</script>\n\n{#if $toasts.length > 0}\n\t<div class=\"fixed bottom-4 right-4 z-[100] flex flex-col gap-2 w-full max-w-sm\">\n\t\t{#each $toasts as t (t.id)}\n\t\t\t<div\n\t\t\t\tclass={cn(\n\t\t\t\t\t\"rounded-xl p-4 pr-8 shadow-glass-lg animate-slide-in relative\",\n\t\t\t\t\tt.variant === \"destructive\"\n\t\t\t\t\t\t? \"bg-red-950/90 border border-red-400/40 text-red-100\"\n\t\t\t\t\t\t: \"bg-white/90 dark:bg-zinc-900/90 border border-white/40 dark:border-white/15 text-zinc-900 dark:text-zinc-100\"\n\t\t\t\t)}\n\t\t\t\tstyle=\"backdrop-filter: blur(40px) saturate(1.8); -webkit-backdrop-filter: blur(40px) saturate(1.8);\"\n\t\t\t\trole=\"alert\"\n\t\t\t>\n\t\t\t\t{#if t.title}\n\t\t\t\t\t<p class=\"text-sm font-semibold\">{t.title}</p>\n\t\t\t\t{/if}\n\t\t\t\t{#if t.description}\n\t\t\t\t\t<p class={cn(\"text-sm mt-1\", t.variant === \"destructive\" ? \"text-red-200\" : \"text-zinc-600 dark:text-zinc-400\")}>{t.description}</p>\n\t\t\t\t{/if}\n\t\t\t\t<button\n\t\t\t\t\tclass={cn(\n\t\t\t\t\t\t\"absolute right-2 top-2 rounded-md p-1 transition-colors cursor-pointer\",\n\t\t\t\t\t\tt.variant === \"destructive\" ? \"text-red-300 hover:text-red-100\" : \"text-zinc-400 hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-200\"\n\t\t\t\t\t)}\n\t\t\t\t\tonclick={() => dismiss(t.id)}\n\t\t\t\t>\n\t\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg>\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t{/each}\n\t</div>\n{/if}\n",
+      "target": "components/ui/toast/toaster.svelte"
+    },
+    {
+      "path": "ui/toast/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Toaster } from \"./toaster.svelte\";\nexport { toast, dismiss, toasts } from \"./toast-state.js\";\nexport type { Toast } from \"./toast-state.js\";\n",
+      "target": "components/ui/toast/index.ts"
+    }
+  ]
+}

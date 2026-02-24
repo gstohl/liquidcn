@@ -1,0 +1,46 @@
+{
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "title": "Breadcrumb",
+  "description": "A breadcrumb navigation component.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/breadcrumb/breadcrumb.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLAttributes<HTMLElement> {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<nav aria-label=\"breadcrumb\" class={cn(className)} {...rest}>\n\t<ol class=\"flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground\">\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</ol>\n</nav>\n",
+      "target": "components/ui/breadcrumb/breadcrumb.svelte"
+    },
+    {
+      "path": "ui/breadcrumb/breadcrumb-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLLiAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLLiAttributes {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<li class={cn(\"inline-flex items-center gap-1.5\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</li>\n",
+      "target": "components/ui/breadcrumb/breadcrumb-item.svelte"
+    },
+    {
+      "path": "ui/breadcrumb/breadcrumb-link.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLAnchorAttributes {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<a class={cn(\"transition-colors hover:text-foreground\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</a>\n",
+      "target": "components/ui/breadcrumb/breadcrumb-link.svelte"
+    },
+    {
+      "path": "ui/breadcrumb/breadcrumb-separator.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\n\tinterface Props {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className }: Props = $props();\n</script>\n\n<li role=\"presentation\" aria-hidden=\"true\" class={cn(\"[&>svg]:size-3.5\", className)}>\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 18 6-6-6-6\"/></svg>\n</li>\n",
+      "target": "components/ui/breadcrumb/breadcrumb-separator.svelte"
+    },
+    {
+      "path": "ui/breadcrumb/breadcrumb-page.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children }: Props = $props();\n</script>\n\n<span role=\"link\" aria-disabled=\"true\" aria-current=\"page\" class={cn(\"font-normal text-foreground\", className)}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</span>\n",
+      "target": "components/ui/breadcrumb/breadcrumb-page.svelte"
+    },
+    {
+      "path": "ui/breadcrumb/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Breadcrumb } from \"./breadcrumb.svelte\";\nexport { default as BreadcrumbItem } from \"./breadcrumb-item.svelte\";\nexport { default as BreadcrumbLink } from \"./breadcrumb-link.svelte\";\nexport { default as BreadcrumbSeparator } from \"./breadcrumb-separator.svelte\";\nexport { default as BreadcrumbPage } from \"./breadcrumb-page.svelte\";\n",
+      "target": "components/ui/breadcrumb/index.ts"
+    }
+  ]
+}

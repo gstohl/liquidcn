@@ -1,0 +1,24 @@
+{
+  "name": "progress",
+  "type": "registry:ui",
+  "title": "Progress",
+  "description": "A glass-styled progress bar with animated fill.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/progress/progress.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Progress as ProgressPrimitive } from \"bits-ui\";\n\n\tinterface Props extends ProgressPrimitive.RootProps {\n\t\tclass?: string;\n\t\tindicatorClass?: string;\n\t}\n\n\tlet { class: className, indicatorClass, value = 0, max = 100, ...rest }: Props = $props();\n</script>\n\n<ProgressPrimitive.Root\n\t{value}\n\t{max}\n\tclass={cn(\n\t\t\"relative h-3 w-full overflow-hidden rounded-full glass border border-glass-border-strong shadow-glass-sm\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t<div\n\t\tclass={cn(\n\t\t\t\"h-full rounded-full bg-primary transition-all duration-500 ease-out\",\n\t\t\tindicatorClass\n\t\t)}\n\t\tstyle=\"width: {((value ?? 0) / max) * 100}%\"\n\t/>\n</ProgressPrimitive.Root>\n",
+      "target": "components/ui/progress/progress.svelte"
+    },
+    {
+      "path": "ui/progress/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Progress } from \"./progress.svelte\";\n",
+      "target": "components/ui/progress/index.ts"
+    }
+  ]
+}

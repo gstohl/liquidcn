@@ -1,0 +1,24 @@
+{
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "A liquid glass button component with multiple variants.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/button/button.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\" module>\n\timport { cva, type VariantProps } from \"class-variance-authority\";\n\n\texport const buttonVariants = cva(\n\t\t\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer\",\n\t\t{\n\t\t\tvariants: {\n\t\t\t\tvariant: {\n\t\t\t\t\tdefault:\n\t\t\t\t\t\t\"glass hover:shadow-glass-lg active:scale-[0.98]\",\n\t\t\t\t\tprimary:\n\t\t\t\t\t\t\"bg-primary text-primary-foreground shadow-glass hover:brightness-110 active:scale-[0.98]\",\n\t\t\t\t\tdestructive:\n\t\t\t\t\t\t\"bg-destructive text-destructive-foreground shadow-glass hover:brightness-110 active:scale-[0.98]\",\n\t\t\t\t\toutline:\n\t\t\t\t\t\t\"border border-glass-border bg-transparent hover:bg-glass-light active:scale-[0.98]\",\n\t\t\t\t\tghost:\n\t\t\t\t\t\t\"hover:bg-glass-light active:scale-[0.98]\",\n\t\t\t\t\tlink: \"text-primary underline-offset-4 hover:underline\",\n\t\t\t\t},\n\t\t\t\tsize: {\n\t\t\t\t\tdefault: \"h-10 px-4 py-2\",\n\t\t\t\t\tsm: \"h-9 rounded-md px-3\",\n\t\t\t\t\tlg: \"h-11 rounded-lg px-8 text-base\",\n\t\t\t\t\ticon: \"h-10 w-10 rounded-lg\",\n\t\t\t\t},\n\t\t\t},\n\t\t\tdefaultVariants: {\n\t\t\t\tvariant: \"default\",\n\t\t\t\tsize: \"default\",\n\t\t\t},\n\t\t}\n\t);\n\n\texport type ButtonVariant = VariantProps<typeof buttonVariants>[\"variant\"];\n\texport type ButtonSize = VariantProps<typeof buttonVariants>[\"size\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLButtonAttributes {\n\t\tvariant?: ButtonVariant;\n\t\tsize?: ButtonSize;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet {\n\t\tvariant = \"default\",\n\t\tsize = \"default\",\n\t\tclass: className,\n\t\tchildren,\n\t\t...rest\n\t}: Props = $props();\n</script>\n\n<button class={cn(buttonVariants({ variant, size }), className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</button>\n",
+      "target": "components/ui/button/button.svelte"
+    },
+    {
+      "path": "ui/button/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Button } from \"./button.svelte\";\nexport { buttonVariants } from \"./button.svelte\";\n",
+      "target": "components/ui/button/index.ts"
+    }
+  ]
+}

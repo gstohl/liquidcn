@@ -1,0 +1,54 @@
+{
+  "name": "dropdown-menu",
+  "type": "registry:ui",
+  "title": "Dropdown Menu",
+  "description": "A glass-styled dropdown menu.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/dropdown-menu/dropdown-menu.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from \"bits-ui\";\n\n\tlet { children, ...rest }: DropdownMenuPrimitive.RootProps = $props();\n</script>\n\n<DropdownMenuPrimitive.Root {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DropdownMenuPrimitive.Root>\n",
+      "target": "components/ui/dropdown-menu/dropdown-menu.svelte"
+    },
+    {
+      "path": "ui/dropdown-menu/dropdown-menu-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { DropdownMenu as DropdownMenuPrimitive } from \"bits-ui\";\n\n\tlet { children, ...rest }: DropdownMenuPrimitive.TriggerProps = $props();\n</script>\n\n<DropdownMenuPrimitive.Trigger {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DropdownMenuPrimitive.Trigger>\n",
+      "target": "components/ui/dropdown-menu/dropdown-menu-trigger.svelte"
+    },
+    {
+      "path": "ui/dropdown-menu/dropdown-menu-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { DropdownMenu as DropdownMenuPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DropdownMenuPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, sideOffset = 4, ...rest }: Props = $props();\n</script>\n\n<DropdownMenuPrimitive.Portal>\n\t<DropdownMenuPrimitive.Content\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"z-50 min-w-[8rem] overflow-hidden rounded-xl glass-heavy p-1 shadow-glass-lg data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</DropdownMenuPrimitive.Content>\n</DropdownMenuPrimitive.Portal>\n",
+      "target": "components/ui/dropdown-menu/dropdown-menu-content.svelte"
+    },
+    {
+      "path": "ui/dropdown-menu/dropdown-menu-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { DropdownMenu as DropdownMenuPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DropdownMenuPrimitive.ItemProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t\tinset?: boolean;\n\t}\n\n\tlet { class: className, children, inset = false, ...rest }: Props = $props();\n</script>\n\n<DropdownMenuPrimitive.Item\n\tclass={cn(\n\t\t\"relative flex cursor-pointer select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-colors hover:bg-glass-light focus:bg-glass-light data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tinset && \"pl-8\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DropdownMenuPrimitive.Item>\n",
+      "target": "components/ui/dropdown-menu/dropdown-menu-item.svelte"
+    },
+    {
+      "path": "ui/dropdown-menu/dropdown-menu-separator.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { DropdownMenu as DropdownMenuPrimitive } from \"bits-ui\";\n\n\tlet { class: className, ...rest }: DropdownMenuPrimitive.SeparatorProps = $props();\n</script>\n\n<DropdownMenuPrimitive.Separator\n\tclass={cn(\"-mx-1 my-1 h-px bg-glass-border\", className)}\n\t{...rest}\n/>\n",
+      "target": "components/ui/dropdown-menu/dropdown-menu-separator.svelte"
+    },
+    {
+      "path": "ui/dropdown-menu/dropdown-menu-group-heading.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { DropdownMenu as DropdownMenuPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: DropdownMenuPrimitive.GroupHeadingProps = $props();\n</script>\n\n<DropdownMenuPrimitive.GroupHeading\n\tclass={cn(\"px-2 py-1.5 text-xs font-semibold text-muted-foreground\", className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DropdownMenuPrimitive.GroupHeading>\n",
+      "target": "components/ui/dropdown-menu/dropdown-menu-group-heading.svelte"
+    },
+    {
+      "path": "ui/dropdown-menu/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as DropdownMenu } from \"./dropdown-menu.svelte\";\nexport { default as DropdownMenuTrigger } from \"./dropdown-menu-trigger.svelte\";\nexport { default as DropdownMenuContent } from \"./dropdown-menu-content.svelte\";\nexport { default as DropdownMenuItem } from \"./dropdown-menu-item.svelte\";\nexport { default as DropdownMenuSeparator } from \"./dropdown-menu-separator.svelte\";\nexport { default as DropdownMenuGroupHeading } from \"./dropdown-menu-group-heading.svelte\";\n",
+      "target": "components/ui/dropdown-menu/index.ts"
+    }
+  ]
+}

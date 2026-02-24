@@ -1,0 +1,24 @@
+{
+  "name": "switch",
+  "type": "registry:ui",
+  "title": "Switch",
+  "description": "A glass-styled toggle switch.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/switch/switch.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Switch as SwitchPrimitive } from \"bits-ui\";\n\n\tinterface Props extends SwitchPrimitive.RootProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, checked = $bindable(false), ...rest }: Props = $props();\n</script>\n\n<SwitchPrimitive.Root\n\tbind:checked\n\tclass={cn(\n\t\t\"peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full glass border border-glass-border-strong shadow-glass-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t<SwitchPrimitive.Thumb\n\t\tclass={cn(\n\t\t\t\"pointer-events-none block h-5 w-5 rounded-full bg-white shadow-glass-sm transition-transform duration-200 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0.5\"\n\t\t)}\n\t/>\n</SwitchPrimitive.Root>\n",
+      "target": "components/ui/switch/switch.svelte"
+    },
+    {
+      "path": "ui/switch/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Switch } from \"./switch.svelte\";\n",
+      "target": "components/ui/switch/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "A loading spinner component.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/spinner/spinner.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\n\tinterface Props {\n\t\tclass?: string;\n\t\tsize?: \"sm\" | \"default\" | \"lg\";\n\t}\n\n\tlet { class: className, size = \"default\" }: Props = $props();\n\n\tconst sizeClasses = {\n\t\tsm: \"h-4 w-4 border-2\",\n\t\tdefault: \"h-6 w-6 border-2\",\n\t\tlg: \"h-8 w-8 border-3\",\n\t};\n</script>\n\n<div\n\tclass={cn(\n\t\t\"animate-spin rounded-full border-current border-t-transparent\",\n\t\tsizeClasses[size],\n\t\tclassName\n\t)}\n\trole=\"status\"\n\taria-label=\"Loading\"\n/>\n",
+      "target": "components/ui/spinner/spinner.svelte"
+    },
+    {
+      "path": "ui/spinner/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Spinner } from \"./spinner.svelte\";\n",
+      "target": "components/ui/spinner/index.ts"
+    }
+  ]
+}

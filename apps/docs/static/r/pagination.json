@@ -1,0 +1,40 @@
+{
+  "name": "pagination",
+  "type": "registry:ui",
+  "title": "Pagination",
+  "description": "A glass-styled pagination component.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/pagination/pagination.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children }: Props = $props();\n</script>\n\n<nav role=\"navigation\" aria-label=\"pagination\" class={cn(\"mx-auto flex w-full justify-center\", className)}>\n\t<ul class=\"flex flex-row items-center gap-1\">\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</ul>\n</nav>\n",
+      "target": "components/ui/pagination/pagination.svelte"
+    },
+    {
+      "path": "ui/pagination/pagination-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLButtonAttributes {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t\tactive?: boolean;\n\t}\n\n\tlet { class: className, children, active = false, ...rest }: Props = $props();\n</script>\n\n<li>\n\t<button\n\t\tclass={cn(\n\t\t\t\"inline-flex items-center justify-center rounded-lg text-sm font-medium h-10 w-10 transition-all duration-200 cursor-pointer\",\n\t\t\tactive\n\t\t\t\t? \"bg-primary text-primary-foreground shadow-glass\"\n\t\t\t\t: \"glass hover:shadow-glass\",\n\t\t\tclassName\n\t\t)}\n\t\taria-current={active ? \"page\" : undefined}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</button>\n</li>\n",
+      "target": "components/ui/pagination/pagination-item.svelte"
+    },
+    {
+      "path": "ui/pagination/pagination-prev.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLButtonAttributes {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<li>\n\t<button\n\t\tclass={cn(\"inline-flex items-center justify-center rounded-lg text-sm font-medium h-10 px-3 gap-1 glass hover:shadow-glass transition-all duration-200 cursor-pointer\", className)}\n\t\t{...rest}\n\t>\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m15 18-6-6 6-6\"/></svg>\n\t\tPrev\n\t</button>\n</li>\n",
+      "target": "components/ui/pagination/pagination-prev.svelte"
+    },
+    {
+      "path": "ui/pagination/pagination-next.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLButtonAttributes {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<li>\n\t<button\n\t\tclass={cn(\"inline-flex items-center justify-center rounded-lg text-sm font-medium h-10 px-3 gap-1 glass hover:shadow-glass transition-all duration-200 cursor-pointer\", className)}\n\t\t{...rest}\n\t>\n\t\tNext\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 18 6-6-6-6\"/></svg>\n\t</button>\n</li>\n",
+      "target": "components/ui/pagination/pagination-next.svelte"
+    },
+    {
+      "path": "ui/pagination/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Pagination } from \"./pagination.svelte\";\nexport { default as PaginationItem } from \"./pagination-item.svelte\";\nexport { default as PaginationPrev } from \"./pagination-prev.svelte\";\nexport { default as PaginationNext } from \"./pagination-next.svelte\";\n",
+      "target": "components/ui/pagination/index.ts"
+    }
+  ]
+}

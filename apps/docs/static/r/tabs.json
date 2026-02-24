@@ -1,0 +1,42 @@
+{
+  "name": "tabs",
+  "type": "registry:ui",
+  "title": "Tabs",
+  "description": "Glass-styled tabbed navigation.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/tabs/tabs.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: TabsPrimitive.RootProps = $props();\n</script>\n\n<TabsPrimitive.Root class={cn(\"\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</TabsPrimitive.Root>\n",
+      "target": "components/ui/tabs/tabs.svelte"
+    },
+    {
+      "path": "ui/tabs/tabs-list.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: TabsPrimitive.ListProps = $props();\n</script>\n\n<TabsPrimitive.List\n\tclass={cn(\n\t\t\"inline-flex h-10 items-center justify-center rounded-xl glass p-1 gap-1\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</TabsPrimitive.List>\n",
+      "target": "components/ui/tabs/tabs-list.svelte"
+    },
+    {
+      "path": "ui/tabs/tabs-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: TabsPrimitive.TriggerProps = $props();\n</script>\n\n<TabsPrimitive.Trigger\n\tclass={cn(\n\t\t\"inline-flex items-center justify-center whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-glass-heavy data-[state=active]:shadow-glass-sm data-[state=active]:text-foreground text-muted-foreground hover:text-foreground cursor-pointer\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</TabsPrimitive.Trigger>\n",
+      "target": "components/ui/tabs/tabs-trigger.svelte"
+    },
+    {
+      "path": "ui/tabs/tabs-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: TabsPrimitive.ContentProps = $props();\n</script>\n\n<TabsPrimitive.Content\n\tclass={cn(\n\t\t\"mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</TabsPrimitive.Content>\n",
+      "target": "components/ui/tabs/tabs-content.svelte"
+    },
+    {
+      "path": "ui/tabs/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Tabs } from \"./tabs.svelte\";\nexport { default as TabsList } from \"./tabs-list.svelte\";\nexport { default as TabsTrigger } from \"./tabs-trigger.svelte\";\nexport { default as TabsContent } from \"./tabs-content.svelte\";\n",
+      "target": "components/ui/tabs/index.ts"
+    }
+  ]
+}

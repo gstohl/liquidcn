@@ -1,0 +1,48 @@
+{
+  "name": "navigation-menu",
+  "type": "registry:ui",
+  "title": "Navigation Menu",
+  "description": "A glass-styled navigation menu with dropdown content.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/navigation-menu/navigation-menu.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { NavigationMenu as NavPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    ...restProps\n  }: { class?: string; children?: import(\"svelte\").Snippet } & Record<string, any> = $props();\n</script>\n\n<NavPrimitive.Root\n  class={cn(\n    \"relative z-10 flex max-w-max flex-1 items-center justify-center\",\n    className\n  )}\n  {...restProps}\n>\n  {#if children}\n    {@render children()}\n  {/if}\n  <NavigationMenuViewport />\n</NavPrimitive.Root>\n\n{#snippet NavigationMenuViewport()}\n  <div class=\"absolute left-0 top-full flex justify-center\">\n    <NavPrimitive.Viewport\n      class={cn(\n        \"origin-top-center relative mt-1.5 h-[var(--bits-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl glass-heavy shadow-glass-lg transition-all duration-300\",\n        \"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90\",\n        \"md:w-[var(--bits-navigation-menu-viewport-width)]\"\n      )}\n    />\n  </div>\n{/snippet}\n",
+      "target": "components/ui/navigation-menu/navigation-menu.svelte"
+    },
+    {
+      "path": "ui/navigation-menu/navigation-menu-list.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { NavigationMenu as NavPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    ...restProps\n  }: { class?: string } & Record<string, any> = $props();\n</script>\n\n<NavPrimitive.List\n  class={cn(\n    \"group flex flex-1 list-none items-center justify-center space-x-1 rounded-xl glass-heavy p-1 shadow-glass\",\n    className\n  )}\n  {...restProps}\n/>\n",
+      "target": "components/ui/navigation-menu/navigation-menu-list.svelte"
+    },
+    {
+      "path": "ui/navigation-menu/navigation-menu-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { NavigationMenu as NavPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    ...restProps\n  }: { class?: string; children?: import(\"svelte\").Snippet } & Record<string, any> = $props();\n</script>\n\n<NavPrimitive.Trigger\n  class={cn(\n    \"group inline-flex h-9 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 cursor-pointer\",\n    \"hover:glass hover:shadow-glass\",\n    \"data-[state=open]:glass data-[state=open]:shadow-glass\",\n    \"disabled:pointer-events-none disabled:opacity-50\",\n    className\n  )}\n  {...restProps}\n>\n  {#if children}\n    {@render children()}\n  {/if}\n  <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"relative top-[1px] ml-1 transition-transform duration-200 group-data-[state=open]:rotate-180\"><path d=\"m6 9 6 6 6-6\"/></svg>\n</NavPrimitive.Trigger>\n",
+      "target": "components/ui/navigation-menu/navigation-menu-trigger.svelte"
+    },
+    {
+      "path": "ui/navigation-menu/navigation-menu-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { NavigationMenu as NavPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    ...restProps\n  }: { class?: string } & Record<string, any> = $props();\n</script>\n\n<NavPrimitive.Content\n  class={cn(\n    \"left-0 top-0 w-full p-4\",\n    \"data-[motion=from-start]:animate-in data-[motion=from-start]:fade-in data-[motion=to-start]:animate-out data-[motion=to-start]:fade-out\",\n    \"data-[motion=from-end]:animate-in data-[motion=from-end]:fade-in data-[motion=to-end]:animate-out data-[motion=to-end]:fade-out\",\n    \"md:absolute md:w-auto\",\n    className\n  )}\n  {...restProps}\n/>\n",
+      "target": "components/ui/navigation-menu/navigation-menu-content.svelte"
+    },
+    {
+      "path": "ui/navigation-menu/navigation-menu-link.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { NavigationMenu as NavPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    ...restProps\n  }: { class?: string } & Record<string, any> = $props();\n</script>\n\n<NavPrimitive.Link\n  class={cn(\n    \"block select-none space-y-1 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200\",\n    \"hover:glass hover:shadow-glass\",\n    className\n  )}\n  {...restProps}\n/>\n",
+      "target": "components/ui/navigation-menu/navigation-menu-link.svelte"
+    },
+    {
+      "path": "ui/navigation-menu/index.ts",
+      "type": "registry:ui",
+      "content": "import { NavigationMenu as NavPrimitive } from \"bits-ui\";\n\nexport { default as NavigationMenu } from \"./navigation-menu.svelte\";\nexport { default as NavigationMenuList } from \"./navigation-menu-list.svelte\";\nexport { default as NavigationMenuTrigger } from \"./navigation-menu-trigger.svelte\";\nexport { default as NavigationMenuContent } from \"./navigation-menu-content.svelte\";\nexport { default as NavigationMenuLink } from \"./navigation-menu-link.svelte\";\n\nexport const NavigationMenuItem = NavPrimitive.Item;\n",
+      "target": "components/ui/navigation-menu/index.ts"
+    }
+  ]
+}

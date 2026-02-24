@@ -1,0 +1,32 @@
+{
+  "name": "toggle-group",
+  "type": "registry:ui",
+  "title": "Toggle Group",
+  "description": "A glass-styled toggle group.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "toggle"
+  ],
+  "files": [
+    {
+      "path": "ui/toggle-group/toggle-group.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\n\tinterface Props extends ToggleGroupPrimitive.RootProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<ToggleGroupPrimitive.Root class={cn(\"flex items-center gap-1\", className)} {...rest}>\n\t{@render rest.children?.()}\n</ToggleGroupPrimitive.Root>\n",
+      "target": "components/ui/toggle-group/toggle-group.svelte"
+    },
+    {
+      "path": "ui/toggle-group/toggle-group-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends ToggleGroupPrimitive.ItemProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ToggleGroupPrimitive.Item\n\tclass={cn(\n\t\t\"inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all duration-200 glass hover:shadow-glass h-10 px-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground cursor-pointer\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</ToggleGroupPrimitive.Item>\n",
+      "target": "components/ui/toggle-group/toggle-group-item.svelte"
+    },
+    {
+      "path": "ui/toggle-group/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as ToggleGroup } from \"./toggle-group.svelte\";\nexport { default as ToggleGroupItem } from \"./toggle-group-item.svelte\";\n",
+      "target": "components/ui/toggle-group/index.ts"
+    }
+  ]
+}

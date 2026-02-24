@@ -1,0 +1,36 @@
+{
+  "name": "input-otp",
+  "type": "registry:ui",
+  "title": "Input OTP",
+  "description": "A glass-styled OTP/pin code input.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/input-otp/input-otp.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { PinInput as PinInputPrimitive } from \"bits-ui\";\n\n\tinterface Props extends PinInputPrimitive.RootProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, value = $bindable([]), ...rest }: Props = $props();\n</script>\n\n<PinInputPrimitive.Root\n\tbind:value\n\tclass={cn(\"flex items-center gap-2\", className)}\n\t{...rest}\n>\n\t{@render rest.children?.()}\n</PinInputPrimitive.Root>\n",
+      "target": "components/ui/input-otp/input-otp.svelte"
+    },
+    {
+      "path": "ui/input-otp/input-otp-slot.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { PinInput as PinInputPrimitive } from \"bits-ui\";\n\n\tinterface Props extends PinInputPrimitive.CellProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<PinInputPrimitive.Cell\n\tclass={cn(\n\t\t\"relative flex h-10 w-10 items-center justify-center rounded-lg glass border border-glass-border-strong text-sm shadow-glass-sm transition-all duration-200 focus-within:ring-2 focus-within:ring-ring\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#snippet children({ char })}\n\t\t{char ?? \"\"}\n\t{/snippet}\n</PinInputPrimitive.Cell>\n",
+      "target": "components/ui/input-otp/input-otp-slot.svelte"
+    },
+    {
+      "path": "ui/input-otp/input-otp-separator.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\n\tinterface Props {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className }: Props = $props();\n</script>\n\n<div role=\"separator\" class={cn(\"text-muted-foreground\", className)}>\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M5 12h14\"/></svg>\n</div>\n",
+      "target": "components/ui/input-otp/input-otp-separator.svelte"
+    },
+    {
+      "path": "ui/input-otp/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as InputOTP } from \"./input-otp.svelte\";\nexport { default as InputOTPSlot } from \"./input-otp-slot.svelte\";\nexport { default as InputOTPSeparator } from \"./input-otp-separator.svelte\";\n",
+      "target": "components/ui/input-otp/index.ts"
+    }
+  ]
+}

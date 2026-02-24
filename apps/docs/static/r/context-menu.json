@@ -1,0 +1,48 @@
+{
+  "name": "context-menu",
+  "type": "registry:ui",
+  "title": "Context Menu",
+  "description": "A glass-styled right-click context menu.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/context-menu/context-menu.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\n\tinterface Props extends ContextMenuPrimitive.RootProps {}\n\n\tlet { ...rest }: Props = $props();\n</script>\n\n<ContextMenuPrimitive.Root {...rest}>\n\t{@render rest.children?.()}\n</ContextMenuPrimitive.Root>\n",
+      "target": "components/ui/context-menu/context-menu.svelte"
+    },
+    {
+      "path": "ui/context-menu/context-menu-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends ContextMenuPrimitive.TriggerProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ContextMenuPrimitive.Trigger class={cn(className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</ContextMenuPrimitive.Trigger>\n",
+      "target": "components/ui/context-menu/context-menu-trigger.svelte"
+    },
+    {
+      "path": "ui/context-menu/context-menu-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends ContextMenuPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ContextMenuPrimitive.Portal>\n\t<ContextMenuPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"z-50 min-w-[8rem] overflow-hidden rounded-xl glass-heavy p-1 shadow-glass-lg data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</ContextMenuPrimitive.Content>\n</ContextMenuPrimitive.Portal>\n",
+      "target": "components/ui/context-menu/context-menu-content.svelte"
+    },
+    {
+      "path": "ui/context-menu/context-menu-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends ContextMenuPrimitive.ItemProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<ContextMenuPrimitive.Item\n\tclass={cn(\n\t\t\"relative flex cursor-pointer select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-colors hover:bg-glass-light focus:bg-glass-light data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</ContextMenuPrimitive.Item>\n",
+      "target": "components/ui/context-menu/context-menu-item.svelte"
+    },
+    {
+      "path": "ui/context-menu/context-menu-separator.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\n\tinterface Props extends ContextMenuPrimitive.SeparatorProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<ContextMenuPrimitive.Separator class={cn(\"-mx-1 my-1 h-px bg-glass-border\", className)} {...rest} />\n",
+      "target": "components/ui/context-menu/context-menu-separator.svelte"
+    },
+    {
+      "path": "ui/context-menu/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as ContextMenu } from \"./context-menu.svelte\";\nexport { default as ContextMenuTrigger } from \"./context-menu-trigger.svelte\";\nexport { default as ContextMenuContent } from \"./context-menu-content.svelte\";\nexport { default as ContextMenuItem } from \"./context-menu-item.svelte\";\nexport { default as ContextMenuSeparator } from \"./context-menu-separator.svelte\";\n",
+      "target": "components/ui/context-menu/index.ts"
+    }
+  ]
+}

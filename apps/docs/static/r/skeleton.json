@@ -1,0 +1,22 @@
+{
+  "name": "skeleton",
+  "type": "registry:ui",
+  "title": "Skeleton",
+  "description": "A glass shimmer loading placeholder.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/skeleton/skeleton.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\n\tinterface Props {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className }: Props = $props();\n</script>\n\n<div class={cn(\"animate-pulse rounded-xl glass\", className)} />\n",
+      "target": "components/ui/skeleton/skeleton.svelte"
+    },
+    {
+      "path": "ui/skeleton/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Skeleton } from \"./skeleton.svelte\";\n",
+      "target": "components/ui/skeleton/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "toggle",
+  "type": "registry:ui",
+  "title": "Toggle",
+  "description": "A glass-styled toggle button.",
+  "dependencies": [
+    "bits-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/toggle/toggle.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Toggle as TogglePrimitive } from \"bits-ui\";\n\timport { cva, type VariantProps } from \"class-variance-authority\";\n\n\tconst toggleVariants = cva(\n\t\t\"inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\n\t\t{\n\t\t\tvariants: {\n\t\t\t\tvariant: {\n\t\t\t\t\tdefault: \"glass hover:shadow-glass data-[state=on]:bg-primary data-[state=on]:text-primary-foreground\",\n\t\t\t\t\toutline: \"border border-glass-border bg-transparent hover:bg-glass-light data-[state=on]:bg-glass data-[state=on]:border-primary/50\",\n\t\t\t\t},\n\t\t\t\tsize: {\n\t\t\t\t\tdefault: \"h-10 px-3\",\n\t\t\t\t\tsm: \"h-9 px-2.5\",\n\t\t\t\t\tlg: \"h-11 px-5\",\n\t\t\t\t},\n\t\t\t},\n\t\t\tdefaultVariants: { variant: \"default\", size: \"default\" },\n\t\t}\n\t);\n\n\ttype Variants = VariantProps<typeof toggleVariants>;\n\n\tinterface Props extends TogglePrimitive.RootProps {\n\t\tclass?: string;\n\t\tvariant?: Variants[\"variant\"];\n\t\tsize?: Variants[\"size\"];\n\t}\n\n\tlet { class: className, variant, size, ...rest }: Props = $props();\n</script>\n\n<TogglePrimitive.Root class={cn(toggleVariants({ variant, size }), className)} {...rest}>\n\t{@render rest.children?.()}\n</TogglePrimitive.Root>\n",
+      "target": "components/ui/toggle/toggle.svelte"
+    },
+    {
+      "path": "ui/toggle/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Toggle } from \"./toggle.svelte\";\n",
+      "target": "components/ui/toggle/index.ts"
+    }
+  ]
+}

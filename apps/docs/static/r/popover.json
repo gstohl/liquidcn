@@ -1,0 +1,36 @@
+{
+  "name": "popover",
+  "type": "registry:ui",
+  "title": "Popover",
+  "description": "A glass-styled floating popover panel.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/popover/popover.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\n\tinterface Props extends PopoverPrimitive.RootProps {}\n\n\tlet { ...rest }: Props = $props();\n</script>\n\n<PopoverPrimitive.Root {...rest}>\n\t{@render rest.children?.()}\n</PopoverPrimitive.Root>\n",
+      "target": "components/ui/popover/popover.svelte"
+    },
+    {
+      "path": "ui/popover/popover-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends PopoverPrimitive.TriggerProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<PopoverPrimitive.Trigger class={cn(className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</PopoverPrimitive.Trigger>\n",
+      "target": "components/ui/popover/popover-trigger.svelte"
+    },
+    {
+      "path": "ui/popover/popover-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends PopoverPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, sideOffset = 4, ...rest }: Props = $props();\n</script>\n\n<PopoverPrimitive.Portal>\n\t<PopoverPrimitive.Content\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"z-50 w-72 rounded-xl glass-heavy p-4 shadow-glass-lg outline-none data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</PopoverPrimitive.Content>\n</PopoverPrimitive.Portal>\n",
+      "target": "components/ui/popover/popover-content.svelte"
+    },
+    {
+      "path": "ui/popover/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Popover } from \"./popover.svelte\";\nexport { default as PopoverTrigger } from \"./popover-trigger.svelte\";\nexport { default as PopoverContent } from \"./popover-content.svelte\";\n",
+      "target": "components/ui/popover/index.ts"
+    }
+  ]
+}

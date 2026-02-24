@@ -1,0 +1,24 @@
+{
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "title": "Aspect Ratio",
+  "description": "Maintains a consistent width-to-height ratio.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/aspect-ratio/aspect-ratio.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends AspectRatioPrimitive.RootProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<AspectRatioPrimitive.Root class={cn(className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AspectRatioPrimitive.Root>\n",
+      "target": "components/ui/aspect-ratio/aspect-ratio.svelte"
+    },
+    {
+      "path": "ui/aspect-ratio/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as AspectRatio } from \"./aspect-ratio.svelte\";\n",
+      "target": "components/ui/aspect-ratio/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "carousel",
+  "type": "registry:ui",
+  "title": "Carousel",
+  "description": "A glass-styled content carousel with prev/next controls.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/carousel/carousel.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    orientation = \"horizontal\",\n    ...restProps\n  }: {\n    class?: string;\n    children?: import(\"svelte\").Snippet;\n    orientation?: \"horizontal\" | \"vertical\";\n  } & Record<string, any> = $props();\n\n  let scrollContainer: HTMLDivElement | undefined = $state();\n  let canScrollPrev = $state(false);\n  let canScrollNext = $state(true);\n\n  function updateScrollState() {\n    if (!scrollContainer) return;\n    if (orientation === \"horizontal\") {\n      canScrollPrev = scrollContainer.scrollLeft > 0;\n      canScrollNext = scrollContainer.scrollLeft < scrollContainer.scrollWidth - scrollContainer.clientWidth - 1;\n    } else {\n      canScrollPrev = scrollContainer.scrollTop > 0;\n      canScrollNext = scrollContainer.scrollTop < scrollContainer.scrollHeight - scrollContainer.clientHeight - 1;\n    }\n  }\n\n  function scrollPrev() {\n    if (!scrollContainer) return;\n    const amount = orientation === \"horizontal\" ? scrollContainer.clientWidth : scrollContainer.clientHeight;\n    scrollContainer.scrollBy({\n      [orientation === \"horizontal\" ? \"left\" : \"top\"]: -amount,\n      behavior: \"smooth\",\n    });\n  }\n\n  function scrollNext() {\n    if (!scrollContainer) return;\n    const amount = orientation === \"horizontal\" ? scrollContainer.clientWidth : scrollContainer.clientHeight;\n    scrollContainer.scrollBy({\n      [orientation === \"horizontal\" ? \"left\" : \"top\"]: amount,\n      behavior: \"smooth\",\n    });\n  }\n</script>\n\n<div\n  class={cn(\"relative\", className)}\n  role=\"region\"\n  aria-roledescription=\"carousel\"\n  {...restProps}\n>\n  <div\n    bind:this={scrollContainer}\n    onscroll={updateScrollState}\n    class={cn(\n      \"flex gap-4 overflow-hidden scroll-smooth snap-mandatory\",\n      orientation === \"horizontal\" ? \"snap-x flex-row\" : \"snap-y flex-col\"\n    )}\n  >\n    {#if children}\n      {@render children()}\n    {/if}\n  </div>\n\n  <button\n    onclick={scrollPrev}\n    disabled={!canScrollPrev}\n    class=\"absolute top-1/2 -translate-y-1/2 -left-4 inline-flex items-center justify-center h-8 w-8 rounded-full glass-heavy shadow-glass-lg transition-all duration-200 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-glass-lg\"\n  >\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m15 18-6-6 6-6\"/></svg>\n  </button>\n  <button\n    onclick={scrollNext}\n    disabled={!canScrollNext}\n    class=\"absolute top-1/2 -translate-y-1/2 -right-4 inline-flex items-center justify-center h-8 w-8 rounded-full glass-heavy shadow-glass-lg transition-all duration-200 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-glass-lg\"\n  >\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 18 6-6-6-6\"/></svg>\n  </button>\n</div>\n",
+      "target": "components/ui/carousel/carousel.svelte"
+    },
+    {
+      "path": "ui/carousel/carousel-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    ...restProps\n  }: {\n    class?: string;\n    children?: import(\"svelte\").Snippet;\n  } & Record<string, any> = $props();\n</script>\n\n<div\n  role=\"group\"\n  aria-roledescription=\"slide\"\n  class={cn(\"min-w-0 shrink-0 grow-0 basis-full snap-center\", className)}\n  {...restProps}\n>\n  {#if children}\n    {@render children()}\n  {/if}\n</div>\n",
+      "target": "components/ui/carousel/carousel-item.svelte"
+    },
+    {
+      "path": "ui/carousel/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Carousel } from \"./carousel.svelte\";\nexport { default as CarouselItem } from \"./carousel-item.svelte\";\n",
+      "target": "components/ui/carousel/index.ts"
+    }
+  ]
+}

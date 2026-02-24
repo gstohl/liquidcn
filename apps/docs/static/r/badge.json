@@ -1,0 +1,24 @@
+{
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "A glass badge for displaying status or labels.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/badge/badge.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\" module>\n\timport { cva, type VariantProps } from \"class-variance-authority\";\n\n\texport const badgeVariants = cva(\n\t\t\"inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n\t\t{\n\t\t\tvariants: {\n\t\t\t\tvariant: {\n\t\t\t\t\tdefault: \"glass text-foreground\",\n\t\t\t\t\tprimary: \"bg-primary text-primary-foreground\",\n\t\t\t\t\tdestructive: \"bg-destructive text-destructive-foreground\",\n\t\t\t\t\toutline: \"border border-glass-border text-foreground\",\n\t\t\t\t},\n\t\t\t},\n\t\t\tdefaultVariants: {\n\t\t\t\tvariant: \"default\",\n\t\t\t},\n\t\t}\n\t);\n\n\texport type BadgeVariant = VariantProps<typeof badgeVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLAttributes<HTMLDivElement> {\n\t\tvariant?: BadgeVariant;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { variant = \"default\", class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn(badgeVariants({ variant }), className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</div>\n",
+      "target": "components/ui/badge/badge.svelte"
+    },
+    {
+      "path": "ui/badge/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Badge } from \"./badge.svelte\";\nexport { badgeVariants } from \"./badge.svelte\";\n",
+      "target": "components/ui/badge/index.ts"
+    }
+  ]
+}

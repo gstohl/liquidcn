@@ -1,0 +1,30 @@
+{
+  "name": "radio-group",
+  "type": "registry:ui",
+  "title": "Radio Group",
+  "description": "A glass-styled radio button group.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/radio-group/radio-group.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\n\tinterface Props extends RadioGroupPrimitive.RootProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, value = $bindable(\"\"), ...rest }: Props = $props();\n</script>\n\n<RadioGroupPrimitive.Root bind:value class={cn(\"grid gap-2\", className)} {...rest}>\n\t{@render rest.children?.()}\n</RadioGroupPrimitive.Root>\n",
+      "target": "components/ui/radio-group/radio-group.svelte"
+    },
+    {
+      "path": "ui/radio-group/radio-group-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\n\tinterface Props extends RadioGroupPrimitive.ItemProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tclass={cn(\n\t\t\"aspect-square h-5 w-5 rounded-full glass border border-glass-border-strong shadow-glass-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary cursor-pointer\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t<RadioGroupPrimitive.ItemIndicator class=\"flex items-center justify-center\">\n\t\t<div class=\"h-2.5 w-2.5 rounded-full bg-primary\" />\n\t</RadioGroupPrimitive.ItemIndicator>\n</RadioGroupPrimitive.Item>\n",
+      "target": "components/ui/radio-group/radio-group-item.svelte"
+    },
+    {
+      "path": "ui/radio-group/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as RadioGroup } from \"./radio-group.svelte\";\nexport { default as RadioGroupItem } from \"./radio-group-item.svelte\";\n",
+      "target": "components/ui/radio-group/index.ts"
+    }
+  ]
+}

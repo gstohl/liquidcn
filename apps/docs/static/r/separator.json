@@ -1,0 +1,22 @@
+{
+  "name": "separator",
+  "type": "registry:ui",
+  "title": "Separator",
+  "description": "A glass-styled separator line.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/separator/separator.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLAttributes<HTMLDivElement> {\n\t\torientation?: \"horizontal\" | \"vertical\";\n\t\tclass?: string;\n\t}\n\n\tlet { orientation = \"horizontal\", class: className, ...rest }: Props = $props();\n</script>\n\n<div\n\trole=\"separator\"\n\taria-orientation={orientation}\n\tclass={cn(\n\t\t\"shrink-0 bg-glass-border\",\n\t\torientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n\t\tclassName\n\t)}\n\t{...rest}\n/>\n",
+      "target": "components/ui/separator/separator.svelte"
+    },
+    {
+      "path": "ui/separator/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Separator } from \"./separator.svelte\";\n",
+      "target": "components/ui/separator/index.ts"
+    }
+  ]
+}

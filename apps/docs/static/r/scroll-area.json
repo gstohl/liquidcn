@@ -1,0 +1,24 @@
+{
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "title": "Scroll Area",
+  "description": "A custom scrollable area with glass scrollbar.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/scroll-area/scroll-area.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { ScrollArea as ScrollAreaPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends ScrollAreaPrimitive.RootProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t\torientation?: \"vertical\" | \"horizontal\";\n\t}\n\n\tlet { class: className, children, orientation = \"vertical\", ...rest }: Props = $props();\n</script>\n\n<ScrollAreaPrimitive.Root class={cn(\"relative overflow-hidden\", className)} {...rest}>\n\t<ScrollAreaPrimitive.Viewport class=\"h-full w-full rounded-[inherit]\">\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</ScrollAreaPrimitive.Viewport>\n\t<ScrollAreaPrimitive.Scrollbar\n\t\torientation={orientation}\n\t\tclass={cn(\n\t\t\t\"flex touch-none select-none transition-colors\",\n\t\t\torientation === \"vertical\" && \"h-full w-2.5 border-l border-l-transparent p-px\",\n\t\t\torientation === \"horizontal\" && \"h-2.5 flex-col border-t border-t-transparent p-px\"\n\t\t)}\n\t>\n\t\t<ScrollAreaPrimitive.Thumb class=\"relative flex-1 rounded-full bg-glass-border-strong\" />\n\t</ScrollAreaPrimitive.Scrollbar>\n</ScrollAreaPrimitive.Root>\n",
+      "target": "components/ui/scroll-area/scroll-area.svelte"
+    },
+    {
+      "path": "ui/scroll-area/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as ScrollArea } from \"./scroll-area.svelte\";\n",
+      "target": "components/ui/scroll-area/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "label",
+  "type": "registry:ui",
+  "title": "Label",
+  "description": "A form label component.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/label/label.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLLabelAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLLabelAttributes {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<label\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</label>\n",
+      "target": "components/ui/label/label.svelte"
+    },
+    {
+      "path": "ui/label/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Label } from \"./label.svelte\";\n",
+      "target": "components/ui/label/index.ts"
+    }
+  ]
+}

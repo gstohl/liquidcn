@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+@theme {
+	/* ── Liquid Glass Design Tokens ── */
+
+	/* Glass blur intensities */
+	--blur-glass-sm: 16px;
+	--blur-glass: 24px;
+	--blur-glass-lg: 40px;
+
+	/* Border radius */
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 14px;
+	--radius-xl: 20px;
+	--radius-full: 9999px;
+
+	/* Colors - base palette */
+	--color-background: oklch(0.98 0 0);
+	--color-foreground: oklch(0.14 0 0);
+	--color-muted: oklch(0.93 0 0);
+	--color-muted-foreground: oklch(0.45 0 0);
+	--color-border: oklch(0.88 0 0);
+	--color-ring: oklch(0.55 0.15 250);
+	--color-primary: oklch(0.55 0.15 250);
+	--color-primary-foreground: oklch(0.98 0 0);
+	--color-destructive: oklch(0.55 0.2 25);
+	--color-destructive-foreground: oklch(0.98 0 0);
+	--color-accent: oklch(0.93 0.01 250);
+	--color-accent-foreground: oklch(0.14 0 0);
+
+	/* Glass-specific colors */
+	--color-glass: oklch(0.98 0 0 / 0.12);
+	--color-glass-heavy: oklch(0.98 0 0 / 0.18);
+	--color-glass-light: oklch(0.98 0 0 / 0.08);
+	--color-glass-border: oklch(0.98 0 0 / 0.3);
+	--color-glass-border-strong: oklch(0.98 0 0 / 0.45);
+
+	/* Glass shadows - includes inner highlight for specular edge */
+	--shadow-glass-sm: 0 2px 8px oklch(0 0 0 / 0.1), inset 0 1px 0 oklch(1 0 0 / 0.15);
+	--shadow-glass: 0 4px 24px oklch(0 0 0 / 0.12), 0 1px 2px oklch(0 0 0 / 0.08), inset 0 1px 0 oklch(1 0 0 / 0.2);
+	--shadow-glass-lg: 0 8px 40px oklch(0 0 0 / 0.15), 0 2px 4px oklch(0 0 0 / 0.1), inset 0 1px 0 oklch(1 0 0 / 0.25);
+	--shadow-glass-xl: 0 16px 56px oklch(0 0 0 / 0.2), 0 4px 8px oklch(0 0 0 / 0.12), inset 0 1px 0 oklch(1 0 0 / 0.3);
+
+	/* Animations */
+	--animate-glass-in: glass-in 0.2s ease-out;
+	--animate-glass-out: glass-out 0.15s ease-in;
+	--animate-slide-in: slide-in 0.2s ease-out;
+	--animate-slide-out: slide-out 0.15s ease-in;
+	--animate-fade-in: fade-in 0.2s ease-out;
+	--animate-fade-out: fade-out 0.15s ease-in;
+	--animate-sheet-in-right: sheet-in-right 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+	--animate-sheet-out-right: sheet-out-right 0.2s ease-in;
+	--animate-sheet-in-left: sheet-in-left 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+	--animate-sheet-out-left: sheet-out-left 0.2s ease-in;
+	--animate-sheet-in-top: sheet-in-top 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+	--animate-sheet-out-top: sheet-out-top 0.2s ease-in;
+	--animate-sheet-in-bottom: sheet-in-bottom 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+	--animate-sheet-out-bottom: sheet-out-bottom 0.2s ease-in;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-background: oklch(0.12 0 0);
+		--color-foreground: oklch(0.96 0 0);
+		--color-muted: oklch(0.2 0 0);
+		--color-muted-foreground: oklch(0.7 0 0);
+		--color-border: oklch(0.25 0 0);
+		--color-primary: oklch(0.7 0.15 250);
+		--color-accent: oklch(0.2 0.01 250);
+		--color-accent-foreground: oklch(0.93 0 0);
+		--color-glass: oklch(1 0 0 / 0.08);
+		--color-glass-heavy: oklch(1 0 0 / 0.14);
+		--color-glass-light: oklch(1 0 0 / 0.05);
+		--color-glass-border: oklch(1 0 0 / 0.18);
+		--color-glass-border-strong: oklch(1 0 0 / 0.3);
+		--shadow-glass-sm: 0 2px 8px oklch(0 0 0 / 0.25), inset 0 1px 0 oklch(1 0 0 / 0.1);
+		--shadow-glass: 0 4px 24px oklch(0 0 0 / 0.3), 0 1px 2px oklch(0 0 0 / 0.2), inset 0 1px 0 oklch(1 0 0 / 0.12);
+		--shadow-glass-lg: 0 8px 40px oklch(0 0 0 / 0.35), 0 2px 4px oklch(0 0 0 / 0.25), inset 0 1px 0 oklch(1 0 0 / 0.15);
+		--shadow-glass-xl: 0 16px 56px oklch(0 0 0 / 0.4), 0 4px 8px oklch(0 0 0 / 0.3), inset 0 1px 0 oklch(1 0 0 / 0.18);
+	}
+}
+
+/* Keyframes */
+@keyframes glass-in {
+	from {
+		opacity: 0;
+		transform: scale(0.96);
+		backdrop-filter: blur(0px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+		backdrop-filter: blur(var(--blur-glass));
+	}
+}
+
+@keyframes glass-out {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+}
+
+@keyframes slide-in {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-out {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+}
+
+@keyframes fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes fade-out {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+
+@keyframes sheet-in-right {
+	from { transform: translateX(100%); }
+	to { transform: translateX(0); }
+}
+@keyframes sheet-out-right {
+	from { transform: translateX(0); }
+	to { transform: translateX(100%); }
+}
+@keyframes sheet-in-left {
+	from { transform: translateX(-100%); }
+	to { transform: translateX(0); }
+}
+@keyframes sheet-out-left {
+	from { transform: translateX(0); }
+	to { transform: translateX(-100%); }
+}
+@keyframes sheet-in-top {
+	from { transform: translateY(-100%); }
+	to { transform: translateY(0); }
+}
+@keyframes sheet-out-top {
+	from { transform: translateY(0); }
+	to { transform: translateY(-100%); }
+}
+@keyframes sheet-in-bottom {
+	from { transform: translateY(100%); }
+	to { transform: translateY(0); }
+}
+@keyframes sheet-out-bottom {
+	from { transform: translateY(0); }
+	to { transform: translateY(100%); }
+}
+
+/* Base styles */
+html, body {
+	min-height: 100vh;
+	width: 100%;
+}
+
+html {
+	font-family: system-ui, -apple-system, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	background-color: var(--color-background);
+	color: var(--color-foreground);
+	margin: 0;
+}
+
+/* Glass utility classes */
+@utility glass {
+	background: var(--color-glass);
+	backdrop-filter: blur(var(--blur-glass)) saturate(1.4);
+	-webkit-backdrop-filter: blur(var(--blur-glass)) saturate(1.4);
+	border: 1px solid var(--color-glass-border);
+	box-shadow: var(--shadow-glass);
+}
+
+@utility glass-heavy {
+	background: var(--color-glass-heavy);
+	backdrop-filter: blur(var(--blur-glass-lg)) saturate(1.6);
+	-webkit-backdrop-filter: blur(var(--blur-glass-lg)) saturate(1.6);
+	border: 1px solid var(--color-glass-border-strong);
+	box-shadow: var(--shadow-glass-lg);
+}
+
+@utility glass-light {
+	background: var(--color-glass-light);
+	backdrop-filter: blur(var(--blur-glass-sm)) saturate(1.2);
+	-webkit-backdrop-filter: blur(var(--blur-glass-sm)) saturate(1.2);
+	border: 1px solid var(--color-glass-border);
+	box-shadow: var(--shadow-glass-sm);
+}

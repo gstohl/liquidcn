@@ -1,0 +1,60 @@
+{
+  "name": "dialog",
+  "type": "registry:ui",
+  "title": "Dialog",
+  "description": "A glass-effect modal dialog.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/dialog/dialog.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\topen = $bindable(false),\n\t\tchildren,\n\t\t...rest\n\t}: DialogPrimitive.RootProps = $props();\n</script>\n\n<DialogPrimitive.Root bind:open {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DialogPrimitive.Root>\n",
+      "target": "components/ui/dialog/dialog.svelte"
+    },
+    {
+      "path": "ui/dialog/dialog-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet { children, ...rest }: DialogPrimitive.TriggerProps = $props();\n</script>\n\n<DialogPrimitive.Trigger {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DialogPrimitive.Trigger>\n",
+      "target": "components/ui/dialog/dialog-trigger.svelte"
+    },
+    {
+      "path": "ui/dialog/dialog-overlay.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet { class: className, ...rest }: DialogPrimitive.OverlayProps = $props();\n</script>\n\n<DialogPrimitive.Overlay\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out\",\n\t\tclassName\n\t)}\n\t{...rest}\n/>\n",
+      "target": "components/ui/dialog/dialog-overlay.svelte"
+    },
+    {
+      "path": "ui/dialog/dialog-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport DialogOverlay from \"./dialog-overlay.svelte\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DialogPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<DialogPrimitive.Portal>\n\t<DialogOverlay />\n\t<DialogPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 glass-heavy rounded-2xl p-6 shadow-glass-xl data-[state=open]:animate-glass-in data-[state=closed]:animate-glass-out\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</DialogPrimitive.Content>\n</DialogPrimitive.Portal>\n",
+      "target": "components/ui/dialog/dialog-content.svelte"
+    },
+    {
+      "path": "ui/dialog/dialog-title.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: DialogPrimitive.TitleProps = $props();\n</script>\n\n<DialogPrimitive.Title\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DialogPrimitive.Title>\n",
+      "target": "components/ui/dialog/dialog-title.svelte"
+    },
+    {
+      "path": "ui/dialog/dialog-description.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: DialogPrimitive.DescriptionProps = $props();\n</script>\n\n<DialogPrimitive.Description\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DialogPrimitive.Description>\n",
+      "target": "components/ui/dialog/dialog-description.svelte"
+    },
+    {
+      "path": "ui/dialog/dialog-close.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DialogPrimitive.CloseProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<DialogPrimitive.Close\n\tclass={cn(\n\t\t\"absolute right-4 top-4 rounded-md p-1 text-muted-foreground hover:text-foreground hover:bg-glass-light transition-colors focus:outline-none focus:ring-2 focus:ring-ring\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg>\n\t\t<span class=\"sr-only\">Close</span>\n\t{/if}\n</DialogPrimitive.Close>\n",
+      "target": "components/ui/dialog/dialog-close.svelte"
+    },
+    {
+      "path": "ui/dialog/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Dialog } from \"./dialog.svelte\";\nexport { default as DialogTrigger } from \"./dialog-trigger.svelte\";\nexport { default as DialogContent } from \"./dialog-content.svelte\";\nexport { default as DialogTitle } from \"./dialog-title.svelte\";\nexport { default as DialogDescription } from \"./dialog-description.svelte\";\nexport { default as DialogClose } from \"./dialog-close.svelte\";\nexport { default as DialogOverlay } from \"./dialog-overlay.svelte\";\n",
+      "target": "components/ui/dialog/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "select",
+  "type": "registry:ui",
+  "title": "Select",
+  "description": "A glass-styled select dropdown.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/select/select.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\n\tlet { children, ...rest }: SelectPrimitive.RootProps = $props();\n</script>\n\n<SelectPrimitive.Root {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</SelectPrimitive.Root>\n",
+      "target": "components/ui/select/select.svelte"
+    },
+    {
+      "path": "ui/select/select-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends SelectPrimitive.TriggerProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<SelectPrimitive.Trigger\n\tclass={cn(\n\t\t\"flex h-10 w-full items-center justify-between rounded-lg glass px-3 py-2 text-sm shadow-glass-sm focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer [&>span]:line-clamp-1\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<span class=\"text-muted-foreground\">Select...</span>\n\t{/if}\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"ml-2 opacity-50\"><path d=\"m6 9 6 6 6-6\"/></svg>\n</SelectPrimitive.Trigger>\n",
+      "target": "components/ui/select/select-trigger.svelte"
+    },
+    {
+      "path": "ui/select/select-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends SelectPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, sideOffset = 4, ...rest }: Props = $props();\n</script>\n\n<SelectPrimitive.Portal>\n\t<SelectPrimitive.Content\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"z-50 min-w-[8rem] overflow-hidden rounded-xl glass-heavy p-1 shadow-glass-lg data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t<SelectPrimitive.Viewport>\n\t\t\t{#if children}\n\t\t\t\t{@render children()}\n\t\t\t{/if}\n\t\t</SelectPrimitive.Viewport>\n\t</SelectPrimitive.Content>\n</SelectPrimitive.Portal>\n",
+      "target": "components/ui/select/select-content.svelte"
+    },
+    {
+      "path": "ui/select/select-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends SelectPrimitive.ItemProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<SelectPrimitive.Item\n\tclass={cn(\n\t\t\"relative flex w-full cursor-pointer select-none items-center rounded-lg py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-glass-light focus:bg-glass-light data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t<span class=\"absolute left-2 flex h-4 w-4 items-center justify-center\">\n\t\t{#snippet children({ selected })}\n\t\t\t{#if selected}\n\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6 9 17l-5-5\"/></svg>\n\t\t\t{/if}\n\t\t{/snippet}\n\t</span>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</SelectPrimitive.Item>\n",
+      "target": "components/ui/select/select-item.svelte"
+    },
+    {
+      "path": "ui/select/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Select } from \"./select.svelte\";\nexport { default as SelectTrigger } from \"./select-trigger.svelte\";\nexport { default as SelectContent } from \"./select-content.svelte\";\nexport { default as SelectItem } from \"./select-item.svelte\";\n",
+      "target": "components/ui/select/index.ts"
+    }
+  ]
+}

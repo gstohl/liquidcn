@@ -1,0 +1,36 @@
+{
+  "name": "collapsible",
+  "type": "registry:ui",
+  "title": "Collapsible",
+  "description": "A glass-styled collapsible section.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/collapsible/collapsible.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\n\tinterface Props extends CollapsiblePrimitive.RootProps {}\n\n\tlet { ...rest }: Props = $props();\n</script>\n\n<CollapsiblePrimitive.Root {...rest}>\n\t{@render rest.children?.()}\n</CollapsiblePrimitive.Root>\n",
+      "target": "components/ui/collapsible/collapsible.svelte"
+    },
+    {
+      "path": "ui/collapsible/collapsible-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends CollapsiblePrimitive.TriggerProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<CollapsiblePrimitive.Trigger class={cn(className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</CollapsiblePrimitive.Trigger>\n",
+      "target": "components/ui/collapsible/collapsible-trigger.svelte"
+    },
+    {
+      "path": "ui/collapsible/collapsible-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends CollapsiblePrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<CollapsiblePrimitive.Content\n\tclass={cn(\"overflow-hidden data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out\", className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</CollapsiblePrimitive.Content>\n",
+      "target": "components/ui/collapsible/collapsible-content.svelte"
+    },
+    {
+      "path": "ui/collapsible/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Collapsible } from \"./collapsible.svelte\";\nexport { default as CollapsibleTrigger } from \"./collapsible-trigger.svelte\";\nexport { default as CollapsibleContent } from \"./collapsible-content.svelte\";\n",
+      "target": "components/ui/collapsible/index.ts"
+    }
+  ]
+}

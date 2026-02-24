@@ -1,0 +1,22 @@
+{
+  "name": "textarea",
+  "type": "registry:ui",
+  "title": "Textarea",
+  "description": "A glass-styled textarea input.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/textarea/textarea.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\n\n\tinterface Props extends HTMLTextareaAttributes {\n\t\tclass?: string;\n\t\tvalue?: string;\n\t}\n\n\tlet { class: className, value = $bindable(\"\"), ...rest }: Props = $props();\n</script>\n\n<textarea\n\tbind:value\n\tclass={cn(\n\t\t\"flex min-h-[80px] w-full rounded-lg bg-glass-light px-3 py-2 text-sm backdrop-blur-sm border border-glass-border shadow-glass-sm transition-all duration-200 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent focus:bg-glass disabled:cursor-not-allowed disabled:opacity-50 resize-y\",\n\t\tclassName\n\t)}\n\t{...rest}\n/>\n",
+      "target": "components/ui/textarea/textarea.svelte"
+    },
+    {
+      "path": "ui/textarea/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Textarea } from \"./textarea.svelte\";\n",
+      "target": "components/ui/textarea/index.ts"
+    }
+  ]
+}

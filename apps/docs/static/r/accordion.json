@@ -1,0 +1,42 @@
+{
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Glass-styled collapsible accordion sections.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/accordion/accordion.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: AccordionPrimitive.RootProps = $props();\n</script>\n\n<AccordionPrimitive.Root class={cn(\"w-full\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AccordionPrimitive.Root>\n",
+      "target": "components/ui/accordion/accordion.svelte"
+    },
+    {
+      "path": "ui/accordion/accordion-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: AccordionPrimitive.ItemProps = $props();\n</script>\n\n<AccordionPrimitive.Item\n\tclass={cn(\"glass rounded-xl mb-2 overflow-hidden\", className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AccordionPrimitive.Item>\n",
+      "target": "components/ui/accordion/accordion-item.svelte"
+    },
+    {
+      "path": "ui/accordion/accordion-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: AccordionPrimitive.TriggerProps = $props();\n</script>\n\n<AccordionPrimitive.Header class=\"flex\">\n\t<AccordionPrimitive.Trigger\n\t\tclass={cn(\n\t\t\t\"flex flex-1 items-center justify-between py-4 px-4 font-medium transition-all hover:bg-glass-light cursor-pointer [&[data-state=open]>svg]:rotate-180\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"shrink-0 transition-transform duration-200\"><path d=\"m6 9 6 6 6-6\"/></svg>\n\t</AccordionPrimitive.Trigger>\n</AccordionPrimitive.Header>\n",
+      "target": "components/ui/accordion/accordion-trigger.svelte"
+    },
+    {
+      "path": "ui/accordion/accordion-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: AccordionPrimitive.ContentProps = $props();\n</script>\n\n<AccordionPrimitive.Content\n\tclass={cn(\n\t\t\"overflow-hidden text-sm transition-all data-[state=closed]:animate-slide-out data-[state=open]:animate-slide-in\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t<div class=\"px-4 pb-4 pt-0\">\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</div>\n</AccordionPrimitive.Content>\n",
+      "target": "components/ui/accordion/accordion-content.svelte"
+    },
+    {
+      "path": "ui/accordion/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Accordion } from \"./accordion.svelte\";\nexport { default as AccordionItem } from \"./accordion-item.svelte\";\nexport { default as AccordionTrigger } from \"./accordion-trigger.svelte\";\nexport { default as AccordionContent } from \"./accordion-content.svelte\";\n",
+      "target": "components/ui/accordion/index.ts"
+    }
+  ]
+}

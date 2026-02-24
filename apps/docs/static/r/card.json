@@ -1,0 +1,52 @@
+{
+  "name": "card",
+  "type": "registry:ui",
+  "title": "Card",
+  "description": "A glass-effect card container with header, content, and footer sections.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/card/card.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLAttributes<HTMLDivElement> {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div\n\tclass={cn(\"glass rounded-xl\", className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</div>\n",
+      "target": "components/ui/card/card.svelte"
+    },
+    {
+      "path": "ui/card/card-header.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLAttributes<HTMLDivElement> {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn(\"flex flex-col gap-1.5 p-6\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</div>\n",
+      "target": "components/ui/card/card-header.svelte"
+    },
+    {
+      "path": "ui/card/card-title.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLAttributes<HTMLHeadingElement> {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<h3 class={cn(\"text-lg font-semibold leading-none tracking-tight\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</h3>\n",
+      "target": "components/ui/card/card-title.svelte"
+    },
+    {
+      "path": "ui/card/card-description.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLAttributes<HTMLParagraphElement> {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<p class={cn(\"text-sm text-muted-foreground\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</p>\n",
+      "target": "components/ui/card/card-description.svelte"
+    },
+    {
+      "path": "ui/card/card-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLAttributes<HTMLDivElement> {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn(\"p-6 pt-0\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</div>\n",
+      "target": "components/ui/card/card-content.svelte"
+    },
+    {
+      "path": "ui/card/card-footer.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends HTMLAttributes<HTMLDivElement> {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<div class={cn(\"flex items-center p-6 pt-0\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</div>\n",
+      "target": "components/ui/card/card-footer.svelte"
+    },
+    {
+      "path": "ui/card/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Card } from \"./card.svelte\";\nexport { default as CardHeader } from \"./card-header.svelte\";\nexport { default as CardTitle } from \"./card-title.svelte\";\nexport { default as CardDescription } from \"./card-description.svelte\";\nexport { default as CardContent } from \"./card-content.svelte\";\nexport { default as CardFooter } from \"./card-footer.svelte\";\n",
+      "target": "components/ui/card/index.ts"
+    }
+  ]
+}

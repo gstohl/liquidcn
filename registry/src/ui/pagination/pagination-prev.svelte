@@ -1,0 +1,20 @@
+<script lang="ts">
+	import { cn } from "$lib/utils/cn";
+	import type { HTMLButtonAttributes } from "svelte/elements";
+
+	interface Props extends HTMLButtonAttributes {
+		class?: string;
+	}
+
+	let { class: className, ...rest }: Props = $props();
+</script>
+
+<li>
+	<button
+		class={cn("inline-flex items-center justify-center rounded-lg text-sm font-medium h-10 px-3 gap-1 glass hover:shadow-glass transition-all duration-200 cursor-pointer", className)}
+		{...rest}
+	>
+		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+		Prev
+	</button>
+</li>

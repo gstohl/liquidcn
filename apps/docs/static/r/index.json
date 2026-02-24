@@ -1,0 +1,451 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "liquidcn",
+  "homepage": "https://liquidcn.dev",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A liquid glass button component with multiple variants.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A glass-effect card container with header, content, and footer sections.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A glass-styled text input field.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A glass badge for displaying status or labels.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "A form label component.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A glass-styled separator line.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A glass-effect modal dialog.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "A glass-styled dropdown menu.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Glass-styled tabbed navigation.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Glass-styled collapsible accordion sections.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Glass-styled toast notifications.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A glass-styled checkbox component.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A glass-styled toggle switch.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "A glass-styled select dropdown.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "A glass-styled textarea input.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A glass-styled avatar with image and fallback.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "A glass-styled alert component.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A glass-styled tooltip.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "A glass-styled progress bar with animated fill.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A glass-styled range slider with draggable thumb.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A glass-styled slide-over panel/drawer.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "A glass shimmer loading placeholder.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A glass-styled floating popover panel.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A glass-styled radio button group.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A glass-styled data table.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "A glass-styled toggle button.",
+      "dependencies": [
+        "bits-ui",
+        "class-variance-authority"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A glass-styled toggle group.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": [
+        "toggle"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "A glass-styled collapsible section.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "A custom scrollable area with glass scrollbar.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "A breadcrumb navigation component.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "A glass-styled pagination component.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "A glass-styled right-click context menu.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "A glass-styled hover card.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A glass-styled confirmation dialog.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Maintains a consistent width-to-height ratio.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A glass-styled command palette / search.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "A glass-styled OTP/pin code input.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A loading spinner component.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "A glass-styled date calendar with month navigation.",
+      "dependencies": [
+        "bits-ui",
+        "@internationalized/date"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "A glass-styled date picker with calendar dropdown.",
+      "dependencies": [
+        "bits-ui",
+        "@internationalized/date"
+      ],
+      "registryDependencies": [
+        "calendar"
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "A glass-styled content carousel with prev/next controls.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "A glass-styled bottom sheet drawer.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "A glass-styled horizontal menu bar.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "A glass-styled navigation menu with dropdown content.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Glass-styled resizable panel groups.",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A glass-styled searchable select/combobox.",
+      "dependencies": [
+        "bits-ui"
+      ],
+      "registryDependencies": [
+        "popover",
+        "command"
+      ]
+    }
+  ]
+}

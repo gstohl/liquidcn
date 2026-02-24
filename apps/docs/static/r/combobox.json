@@ -1,0 +1,27 @@
+{
+  "name": "combobox",
+  "type": "registry:ui",
+  "title": "Combobox",
+  "description": "A glass-styled searchable select/combobox.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "popover",
+    "command"
+  ],
+  "files": [
+    {
+      "path": "ui/combobox/combobox.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { Popover as PopoverPrimitive, Command as CommandPrimitive } from \"bits-ui\";\n  import { cn } from \"$lib/utils/cn\";\n\n  type Option = { value: string; label: string; disabled?: boolean };\n\n  let {\n    class: className,\n    options = [],\n    value = $bindable(\"\"),\n    placeholder = \"Select option...\",\n    searchPlaceholder = \"Search...\",\n    emptyText = \"No results found.\",\n    ...restProps\n  }: {\n    class?: string;\n    options?: Option[];\n    value?: string;\n    placeholder?: string;\n    searchPlaceholder?: string;\n    emptyText?: string;\n  } & Record<string, any> = $props();\n\n  let open = $state(false);\n  let search = $state(\"\");\n\n  const selectedLabel = $derived(options.find((o) => o.value === value)?.label ?? \"\");\n\n  function select(optionValue: string) {\n    value = value === optionValue ? \"\" : optionValue;\n    open = false;\n  }\n</script>\n\n<PopoverPrimitive.Root bind:open>\n  <PopoverPrimitive.Trigger\n    class={cn(\n      \"inline-flex items-center justify-between whitespace-nowrap rounded-xl glass-heavy px-3 py-2 text-sm shadow-glass h-10 w-[200px] cursor-pointer transition-all duration-200 hover:shadow-glass-lg\",\n      !value && \"text-muted-foreground\",\n      className\n    )}\n    {...restProps}\n  >\n    {selectedLabel || placeholder}\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"ml-2 shrink-0 opacity-50\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg>\n  </PopoverPrimitive.Trigger>\n  <PopoverPrimitive.Content\n    class=\"w-[200px] p-0 glass-heavy rounded-xl shadow-glass-lg mt-1 overflow-hidden\"\n    sideOffset={4}\n  >\n    <CommandPrimitive.Root class=\"w-full\">\n      <div class=\"flex items-center border-b border-white/10 px-3\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"mr-2 shrink-0 opacity-50\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>\n        <CommandPrimitive.Input\n          bind:value={search}\n          placeholder={searchPlaceholder}\n          class=\"flex h-9 w-full bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground/50 disabled:cursor-not-allowed disabled:opacity-50\"\n        />\n      </div>\n      <CommandPrimitive.List class=\"max-h-[200px] overflow-y-auto p-1\">\n        <CommandPrimitive.Empty class=\"py-6 text-center text-sm text-muted-foreground\">\n          {emptyText}\n        </CommandPrimitive.Empty>\n        <CommandPrimitive.Group>\n          {#each options as option}\n            <CommandPrimitive.Item\n              value={option.value}\n              keywords={[option.label]}\n              disabled={option.disabled}\n              onSelect={() => select(option.value)}\n              class=\"relative flex cursor-pointer select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-colors duration-150 data-[highlighted]:glass data-[highlighted]:shadow-glass data-[disabled]:pointer-events-none data-[disabled]:opacity-50\"\n            >\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                width=\"14\" height=\"14\"\n                viewBox=\"0 0 24 24\"\n                fill=\"none\"\n                stroke=\"currentColor\"\n                stroke-width=\"2\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n                class={cn(\"mr-2 shrink-0\", value === option.value ? \"opacity-100\" : \"opacity-0\")}\n              >\n                <path d=\"M20 6 9 17l-5-5\"/>\n              </svg>\n              {option.label}\n            </CommandPrimitive.Item>\n          {/each}\n        </CommandPrimitive.Group>\n      </CommandPrimitive.List>\n    </CommandPrimitive.Root>\n  </PopoverPrimitive.Content>\n</PopoverPrimitive.Root>\n",
+      "target": "components/ui/combobox/combobox.svelte"
+    },
+    {
+      "path": "ui/combobox/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Combobox } from \"./combobox.svelte\";\n",
+      "target": "components/ui/combobox/index.ts"
+    }
+  ]
+}

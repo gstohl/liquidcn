@@ -1,0 +1,11 @@
+{
+  "name": "liquidcn",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "bun run --filter @liquidcn/docs dev",
+    "build": "bun run --filter @liquidcn/docs build",
+    "build:registry": "bun run scripts/build-registry.ts",
+    "cli": "bun run --filter @liquidcn/cli"
+  }
+}

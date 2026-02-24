@@ -1,0 +1,34 @@
+{
+  "name": "resizable",
+  "type": "registry:ui",
+  "title": "Resizable",
+  "description": "Glass-styled resizable panel groups.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/resizable/resizable-panel-group.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    direction = \"horizontal\",\n    ...restProps\n  }: {\n    class?: string;\n    children?: import(\"svelte\").Snippet;\n    direction?: \"horizontal\" | \"vertical\";\n  } & Record<string, any> = $props();\n</script>\n\n<div\n  class={cn(\n    \"flex h-full w-full\",\n    direction === \"vertical\" ? \"flex-col\" : \"flex-row\",\n    className\n  )}\n  data-panel-group=\"\"\n  data-direction={direction}\n  {...restProps}\n>\n  {#if children}\n    {@render children()}\n  {/if}\n</div>\n",
+      "target": "components/ui/resizable/resizable-panel-group.svelte"
+    },
+    {
+      "path": "ui/resizable/resizable-panel.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    children,\n    defaultSize = 50,\n    ...restProps\n  }: {\n    class?: string;\n    children?: import(\"svelte\").Snippet;\n    defaultSize?: number;\n  } & Record<string, any> = $props();\n</script>\n\n<div\n  class={cn(\"overflow-hidden\", className)}\n  style=\"flex: {defaultSize} 1 0%\"\n  data-panel=\"\"\n  {...restProps}\n>\n  {#if children}\n    {@render children()}\n  {/if}\n</div>\n",
+      "target": "components/ui/resizable/resizable-panel.svelte"
+    },
+    {
+      "path": "ui/resizable/resizable-handle.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n  import { cn } from \"$lib/utils/cn\";\n\n  let {\n    class: className,\n    withHandle = false,\n    ...restProps\n  }: {\n    class?: string;\n    withHandle?: boolean;\n  } & Record<string, any> = $props();\n\n  let direction = $state<\"horizontal\" | \"vertical\">(\"horizontal\");\n  let handleEl: HTMLDivElement | undefined = $state();\n\n  $effect(() => {\n    if (handleEl) {\n      const group = handleEl.closest(\"[data-panel-group]\");\n      if (group) {\n        direction = (group.getAttribute(\"data-direction\") as \"horizontal\" | \"vertical\") ?? \"horizontal\";\n      }\n    }\n  });\n</script>\n\n<div\n  bind:this={handleEl}\n  class={cn(\n    \"relative flex items-center justify-center\",\n    direction === \"horizontal\"\n      ? \"w-px bg-white/10 mx-0 hover:bg-white/25 transition-colors cursor-col-resize\"\n      : \"h-px bg-white/10 my-0 hover:bg-white/25 transition-colors cursor-row-resize\",\n    className\n  )}\n  data-panel-handle=\"\"\n  {...restProps}\n>\n  {#if withHandle}\n    <div\n      class={cn(\n        \"z-10 flex h-4 w-3 items-center justify-center rounded-sm glass shadow-glass\",\n        direction === \"vertical\" && \"h-3 w-4 rotate-90\"\n      )}\n    >\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" class=\"opacity-50\">\n        <circle cx=\"9\" cy=\"12\" r=\"1\"/><circle cx=\"15\" cy=\"12\" r=\"1\"/>\n      </svg>\n    </div>\n  {/if}\n</div>\n",
+      "target": "components/ui/resizable/resizable-handle.svelte"
+    },
+    {
+      "path": "ui/resizable/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as ResizablePanelGroup } from \"./resizable-panel-group.svelte\";\nexport { default as ResizablePanel } from \"./resizable-panel.svelte\";\nexport { default as ResizableHandle } from \"./resizable-handle.svelte\";\n",
+      "target": "components/ui/resizable/index.ts"
+    }
+  ]
+}

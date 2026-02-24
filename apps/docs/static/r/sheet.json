@@ -1,0 +1,54 @@
+{
+  "name": "sheet",
+  "type": "registry:ui",
+  "title": "Sheet",
+  "description": "A glass-styled slide-over panel/drawer.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/sheet/sheet.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tinterface Props extends DialogPrimitive.RootProps {}\n\n\tlet { ...rest }: Props = $props();\n</script>\n\n<DialogPrimitive.Root {...rest}>\n\t{@render rest.children?.()}\n</DialogPrimitive.Root>\n",
+      "target": "components/ui/sheet/sheet.svelte"
+    },
+    {
+      "path": "ui/sheet/sheet-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DialogPrimitive.TriggerProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<DialogPrimitive.Trigger class={cn(className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DialogPrimitive.Trigger>\n",
+      "target": "components/ui/sheet/sheet-trigger.svelte"
+    },
+    {
+      "path": "ui/sheet/sheet-overlay.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\n\tinterface Props extends DialogPrimitive.OverlayProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<DialogPrimitive.Overlay\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out\",\n\t\tclassName\n\t)}\n\t{...rest}\n/>\n",
+      "target": "components/ui/sheet/sheet-overlay.svelte"
+    },
+    {
+      "path": "ui/sheet/sheet-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport SheetOverlay from \"./sheet-overlay.svelte\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DialogPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t\tside?: \"left\" | \"right\" | \"top\" | \"bottom\";\n\t}\n\n\tlet { class: className, children, side = \"right\", ...rest }: Props = $props();\n\n\tconst sideStyles = {\n\t\tright: \"inset-y-0 right-0 h-full w-3/4 max-w-sm data-[state=open]:animate-sheet-in-right data-[state=closed]:animate-sheet-out-right\",\n\t\tleft: \"inset-y-0 left-0 h-full w-3/4 max-w-sm data-[state=open]:animate-sheet-in-left data-[state=closed]:animate-sheet-out-left\",\n\t\ttop: \"inset-x-0 top-0 w-full h-auto max-h-[80vh] data-[state=open]:animate-sheet-in-top data-[state=closed]:animate-sheet-out-top\",\n\t\tbottom: \"inset-x-0 bottom-0 w-full h-auto max-h-[80vh] data-[state=open]:animate-sheet-in-bottom data-[state=closed]:animate-sheet-out-bottom\",\n\t};\n</script>\n\n<DialogPrimitive.Portal>\n\t<SheetOverlay />\n\t<DialogPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed z-50 glass-heavy p-6 shadow-glass-xl\",\n\t\t\tsideStyles[side],\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t\t<DialogPrimitive.Close\n\t\t\tclass=\"absolute right-4 top-4 rounded-md p-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer\"\n\t\t>\n\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg>\n\t\t</DialogPrimitive.Close>\n\t</DialogPrimitive.Content>\n</DialogPrimitive.Portal>\n",
+      "target": "components/ui/sheet/sheet-content.svelte"
+    },
+    {
+      "path": "ui/sheet/sheet-title.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DialogPrimitive.TitleProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<DialogPrimitive.Title class={cn(\"text-lg font-semibold text-foreground\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DialogPrimitive.Title>\n",
+      "target": "components/ui/sheet/sheet-title.svelte"
+    },
+    {
+      "path": "ui/sheet/sheet-description.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends DialogPrimitive.DescriptionProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<DialogPrimitive.Description class={cn(\"text-sm text-muted-foreground\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</DialogPrimitive.Description>\n",
+      "target": "components/ui/sheet/sheet-description.svelte"
+    },
+    {
+      "path": "ui/sheet/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Sheet } from \"./sheet.svelte\";\nexport { default as SheetTrigger } from \"./sheet-trigger.svelte\";\nexport { default as SheetContent } from \"./sheet-content.svelte\";\nexport { default as SheetTitle } from \"./sheet-title.svelte\";\nexport { default as SheetDescription } from \"./sheet-description.svelte\";\n",
+      "target": "components/ui/sheet/index.ts"
+    }
+  ]
+}

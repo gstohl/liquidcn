@@ -1,0 +1,36 @@
+{
+  "name": "tooltip",
+  "type": "registry:ui",
+  "title": "Tooltip",
+  "description": "A glass-styled tooltip.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/tooltip/tooltip.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { children, ...rest }: TooltipPrimitive.RootProps = $props();\n</script>\n\n<TooltipPrimitive.Provider>\n\t<TooltipPrimitive.Root {...rest}>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</TooltipPrimitive.Root>\n</TooltipPrimitive.Provider>\n",
+      "target": "components/ui/tooltip/tooltip.svelte"
+    },
+    {
+      "path": "ui/tooltip/tooltip-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\n\tlet { children, ...rest }: TooltipPrimitive.TriggerProps = $props();\n</script>\n\n<TooltipPrimitive.Trigger {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</TooltipPrimitive.Trigger>\n",
+      "target": "components/ui/tooltip/tooltip-trigger.svelte"
+    },
+    {
+      "path": "ui/tooltip/tooltip-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends TooltipPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, sideOffset = 4, ...rest }: Props = $props();\n</script>\n\n<TooltipPrimitive.Portal>\n\t<TooltipPrimitive.Content\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"z-50 overflow-hidden rounded-lg glass-heavy px-3 py-1.5 text-sm shadow-glass animate-slide-in\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</TooltipPrimitive.Content>\n</TooltipPrimitive.Portal>\n",
+      "target": "components/ui/tooltip/tooltip-content.svelte"
+    },
+    {
+      "path": "ui/tooltip/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Tooltip } from \"./tooltip.svelte\";\nexport { default as TooltipTrigger } from \"./tooltip-trigger.svelte\";\nexport { default as TooltipContent } from \"./tooltip-content.svelte\";\n",
+      "target": "components/ui/tooltip/index.ts"
+    }
+  ]
+}

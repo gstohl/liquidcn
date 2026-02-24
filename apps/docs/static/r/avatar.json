@@ -1,0 +1,36 @@
+{
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "Avatar",
+  "description": "A glass-styled avatar with image and fallback.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/avatar/avatar.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: AvatarPrimitive.RootProps = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tclass={cn(\n\t\t\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full glass shadow-glass-sm\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AvatarPrimitive.Root>\n",
+      "target": "components/ui/avatar/avatar.svelte"
+    },
+    {
+      "path": "ui/avatar/avatar-image.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\n\tlet { class: className, ...rest }: AvatarPrimitive.ImageProps = $props();\n</script>\n\n<AvatarPrimitive.Image\n\tclass={cn(\"aspect-square h-full w-full object-cover\", className)}\n\t{...rest}\n/>\n",
+      "target": "components/ui/avatar/avatar-image.svelte"
+    },
+    {
+      "path": "ui/avatar/avatar-fallback.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\n\tlet { class: className, children, ...rest }: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\n\t\t\"flex h-full w-full items-center justify-center rounded-full bg-glass-heavy text-sm font-medium\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AvatarPrimitive.Fallback>\n",
+      "target": "components/ui/avatar/avatar-fallback.svelte"
+    },
+    {
+      "path": "ui/avatar/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Avatar } from \"./avatar.svelte\";\nexport { default as AvatarImage } from \"./avatar-image.svelte\";\nexport { default as AvatarFallback } from \"./avatar-fallback.svelte\";\n",
+      "target": "components/ui/avatar/index.ts"
+    }
+  ]
+}

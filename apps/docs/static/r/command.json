@@ -1,0 +1,60 @@
+{
+  "name": "command",
+  "type": "registry:ui",
+  "title": "Command",
+  "description": "A glass-styled command palette / search.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/command/command.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\n\tinterface Props extends CommandPrimitive.RootProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<CommandPrimitive.Root\n\tclass={cn(\n\t\t\"flex h-full w-full flex-col overflow-hidden rounded-xl glass-heavy shadow-glass-lg\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{@render rest.children?.()}\n</CommandPrimitive.Root>\n",
+      "target": "components/ui/command/command.svelte"
+    },
+    {
+      "path": "ui/command/command-input.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\n\tinterface Props extends CommandPrimitive.InputProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<div class=\"flex items-center border-b border-glass-border px-3\">\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"mr-2 shrink-0 opacity-50\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>\n\t<CommandPrimitive.Input\n\t\tclass={cn(\n\t\t\t\"flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t/>\n</div>\n",
+      "target": "components/ui/command/command-input.svelte"
+    },
+    {
+      "path": "ui/command/command-list.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends CommandPrimitive.ListProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<CommandPrimitive.List\n\tclass={cn(\"max-h-[300px] overflow-y-auto overflow-x-hidden\", className)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</CommandPrimitive.List>\n",
+      "target": "components/ui/command/command-list.svelte"
+    },
+    {
+      "path": "ui/command/command-group.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends CommandPrimitive.GroupProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<CommandPrimitive.Group\n\tclass={cn(\n\t\t\"overflow-hidden p-1 text-foreground [&_[data-command-group-heading]]:px-2 [&_[data-command-group-heading]]:py-1.5 [&_[data-command-group-heading]]:text-xs [&_[data-command-group-heading]]:font-medium [&_[data-command-group-heading]]:text-muted-foreground\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</CommandPrimitive.Group>\n",
+      "target": "components/ui/command/command-group.svelte"
+    },
+    {
+      "path": "ui/command/command-item.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends CommandPrimitive.ItemProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<CommandPrimitive.Item\n\tclass={cn(\n\t\t\"relative flex cursor-pointer select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-colors data-[selected]:bg-glass-light data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</CommandPrimitive.Item>\n",
+      "target": "components/ui/command/command-item.svelte"
+    },
+    {
+      "path": "ui/command/command-separator.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\n\tinterface Props extends CommandPrimitive.SeparatorProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, ...rest }: Props = $props();\n</script>\n\n<CommandPrimitive.Separator class={cn(\"-mx-1 h-px bg-glass-border\", className)} {...rest} />\n",
+      "target": "components/ui/command/command-separator.svelte"
+    },
+    {
+      "path": "ui/command/command-empty.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends CommandPrimitive.EmptyProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<CommandPrimitive.Empty class={cn(\"py-6 text-center text-sm text-muted-foreground\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</CommandPrimitive.Empty>\n",
+      "target": "components/ui/command/command-empty.svelte"
+    },
+    {
+      "path": "ui/command/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Command } from \"./command.svelte\";\nexport { default as CommandInput } from \"./command-input.svelte\";\nexport { default as CommandList } from \"./command-list.svelte\";\nexport { default as CommandGroup } from \"./command-group.svelte\";\nexport { default as CommandItem } from \"./command-item.svelte\";\nexport { default as CommandSeparator } from \"./command-separator.svelte\";\nexport { default as CommandEmpty } from \"./command-empty.svelte\";\n",
+      "target": "components/ui/command/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "checkbox",
+  "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "A glass-styled checkbox component.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/checkbox/checkbox.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { Checkbox as CheckboxPrimitive } from \"bits-ui\";\n\n\tinterface Props extends CheckboxPrimitive.RootProps {\n\t\tclass?: string;\n\t}\n\n\tlet { class: className, checked = $bindable(false), ...rest }: Props = $props();\n</script>\n\n<CheckboxPrimitive.Root\n\tbind:checked\n\tclass={cn(\n\t\t\"peer h-5 w-5 shrink-0 rounded-md glass border border-glass-border-strong shadow-glass-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary cursor-pointer\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#snippet children({ checked, indeterminate })}\n\t\t<div class=\"flex items-center justify-center text-current\">\n\t\t\t{#if indeterminate}\n\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"><path d=\"M5 12h14\"/></svg>\n\t\t\t{:else if checked}\n\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6 9 17l-5-5\"/></svg>\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</CheckboxPrimitive.Root>\n",
+      "target": "components/ui/checkbox/checkbox.svelte"
+    },
+    {
+      "path": "ui/checkbox/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as Checkbox } from \"./checkbox.svelte\";\n",
+      "target": "components/ui/checkbox/index.ts"
+    }
+  ]
+}

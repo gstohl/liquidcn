@@ -1,0 +1,60 @@
+{
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "title": "Alert Dialog",
+  "description": "A glass-styled confirmation dialog.",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/alert-dialog/alert-dialog.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\n\tinterface Props extends AlertDialogPrimitive.RootProps {}\n\n\tlet { ...rest }: Props = $props();\n</script>\n\n<AlertDialogPrimitive.Root {...rest}>\n\t{@render rest.children?.()}\n</AlertDialogPrimitive.Root>\n",
+      "target": "components/ui/alert-dialog/alert-dialog.svelte"
+    },
+    {
+      "path": "ui/alert-dialog/alert-dialog-trigger.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends AlertDialogPrimitive.TriggerProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<AlertDialogPrimitive.Trigger class={cn(className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AlertDialogPrimitive.Trigger>\n",
+      "target": "components/ui/alert-dialog/alert-dialog-trigger.svelte"
+    },
+    {
+      "path": "ui/alert-dialog/alert-dialog-content.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends AlertDialogPrimitive.ContentProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<AlertDialogPrimitive.Portal>\n\t<AlertDialogPrimitive.Overlay\n\t\tclass=\"fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out\"\n\t/>\n\t<AlertDialogPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 glass-heavy rounded-2xl p-6 shadow-glass-xl data-[state=open]:animate-glass-in data-[state=closed]:animate-glass-out\",\n\t\t\tclassName\n\t\t)}\n\t\t{...rest}\n\t>\n\t\t{#if children}\n\t\t\t{@render children()}\n\t\t{/if}\n\t</AlertDialogPrimitive.Content>\n</AlertDialogPrimitive.Portal>\n",
+      "target": "components/ui/alert-dialog/alert-dialog-content.svelte"
+    },
+    {
+      "path": "ui/alert-dialog/alert-dialog-title.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends AlertDialogPrimitive.TitleProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<AlertDialogPrimitive.Title class={cn(\"text-lg font-semibold\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AlertDialogPrimitive.Title>\n",
+      "target": "components/ui/alert-dialog/alert-dialog-title.svelte"
+    },
+    {
+      "path": "ui/alert-dialog/alert-dialog-description.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends AlertDialogPrimitive.DescriptionProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<AlertDialogPrimitive.Description class={cn(\"text-sm text-muted-foreground\", className)} {...rest}>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AlertDialogPrimitive.Description>\n",
+      "target": "components/ui/alert-dialog/alert-dialog-description.svelte"
+    },
+    {
+      "path": "ui/alert-dialog/alert-dialog-action.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends AlertDialogPrimitive.ActionProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<AlertDialogPrimitive.Action\n\tclass={cn(\n\t\t\"inline-flex items-center justify-center rounded-lg text-sm font-medium h-10 px-4 py-2 bg-primary text-primary-foreground shadow-glass hover:opacity-90 transition-all duration-200 active:scale-[0.98] cursor-pointer\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AlertDialogPrimitive.Action>\n",
+      "target": "components/ui/alert-dialog/alert-dialog-action.svelte"
+    },
+    {
+      "path": "ui/alert-dialog/alert-dialog-cancel.svelte",
+      "type": "registry:ui",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils/cn\";\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\n\tinterface Props extends AlertDialogPrimitive.CancelProps {\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t}\n\n\tlet { class: className, children, ...rest }: Props = $props();\n</script>\n\n<AlertDialogPrimitive.Cancel\n\tclass={cn(\n\t\t\"inline-flex items-center justify-center rounded-lg text-sm font-medium h-10 px-4 py-2 glass hover:shadow-glass transition-all duration-200 active:scale-[0.98] cursor-pointer\",\n\t\tclassName\n\t)}\n\t{...rest}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{/if}\n</AlertDialogPrimitive.Cancel>\n",
+      "target": "components/ui/alert-dialog/alert-dialog-cancel.svelte"
+    },
+    {
+      "path": "ui/alert-dialog/index.ts",
+      "type": "registry:ui",
+      "content": "export { default as AlertDialog } from \"./alert-dialog.svelte\";\nexport { default as AlertDialogTrigger } from \"./alert-dialog-trigger.svelte\";\nexport { default as AlertDialogContent } from \"./alert-dialog-content.svelte\";\nexport { default as AlertDialogTitle } from \"./alert-dialog-title.svelte\";\nexport { default as AlertDialogDescription } from \"./alert-dialog-description.svelte\";\nexport { default as AlertDialogAction } from \"./alert-dialog-action.svelte\";\nexport { default as AlertDialogCancel } from \"./alert-dialog-cancel.svelte\";\n",
+      "target": "components/ui/alert-dialog/index.ts"
+    }
+  ]
+}
