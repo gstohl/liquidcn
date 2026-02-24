@@ -1,6 +1,6 @@
 {
   "name": "@gstohl/liquidcn",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Add liquid glass components to your SvelteKit project",
   "type": "module",
   "bin": {

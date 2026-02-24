@@ -151,6 +151,21 @@ export function cn(...inputs: ClassValue[]) {
 		}
 	}
 
+	// Write llms.txt for AI assistants
+	const llmsPath = join(cwd, "llms.txt");
+	if (!existsSync(llmsPath)) {
+		try {
+			const llmsUrl = "https://raw.githubusercontent.com/gstohl/liquidcn/main/llms.txt";
+			const res = await fetch(llmsUrl);
+			if (res.ok) {
+				writeFileSync(llmsPath, await res.text());
+				console.log(chalk.green("  Created llms.txt (AI assistant context)"));
+			}
+		} catch {
+			// Non-critical, skip silently
+		}
+	}
+
 	// Check for required dependencies
 	const required = ["clsx", "tailwind-merge", "tailwindcss", "@tailwindcss/vite"];
 	const missing = required.filter((dep) => !deps[dep]);

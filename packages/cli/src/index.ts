@@ -9,7 +9,7 @@ const program = new Command();
 program
 	.name("liquidcn")
 	.description("Add liquid glass components to your SvelteKit project")
-	.version("0.0.1");
+	.version("0.0.2");
 
 program
 	.command("init")
