@@ -7,7 +7,7 @@ import { list } from "./commands/list.js";
 const program = new Command();
 
 program
-	.name("liquid-cn")
+	.name("liquidcn")
 	.description("Add liquid glass components to your SvelteKit project")
 	.version("0.0.1");
 

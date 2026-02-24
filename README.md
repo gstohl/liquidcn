@@ -8,7 +8,7 @@ Inspired by Apple's Liquid Glass design language — frosted blur, specular high
 
 - **46 components** — from Button to Calendar, Combobox, Date Picker, and more
 - **Liquid glass aesthetic** — backdrop-blur, inner light edges, glass shadows, translucent layers
-- **Copy/paste or CLI** — use `npx liquid-cn add button` or copy files directly
+- **Copy/paste or CLI** — use `npx @gstohl/liquidcn add button` or copy files directly
 - **Svelte 5 runes** — `$props()`, `$state()`, `$derived()`, snippets
 - **bits-ui primitives** — accessible, unstyled headless components under the hood
 - **Dark mode** — automatic via `prefers-color-scheme` with tuned glass tokens
@@ -19,7 +19,7 @@ Inspired by Apple's Liquid Glass design language — frosted blur, specular high
 ### 1. Initialize
 
 ```bash
-npx liquid-cn init
+npx @gstohl/liquidcn init
 ```
 
 This adds the glass design tokens to your CSS and creates a `cn` utility.
@@ -27,13 +27,13 @@ This adds the glass design tokens to your CSS and creates a `cn` utility.
 ### 2. Add components
 
 ```bash
-npx liquid-cn add button card dialog
+npx @gstohl/liquidcn add button card dialog
 ```
 
 Or add everything:
 
 ```bash
-npx liquid-cn add --all
+npx @gstohl/liquidcn add --all
 ```
 
 ### 3. Use them
@@ -94,7 +94,7 @@ All tokens auto-adapt for dark mode via `prefers-color-scheme`.
 ```
 liquidcn/
   apps/docs/          # SvelteKit docs & showcase site
-  packages/cli/       # npx liquid-cn CLI
+  packages/cli/       # npx @gstohl/liquidcn CLI
   registry/
     registry.json     # Component manifest
     src/ui/           # Source files served by the CLI

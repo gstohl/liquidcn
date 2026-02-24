@@ -35,5 +35,5 @@ export async function list() {
 	for (const item of items) {
 		console.log(`  ${chalk.cyan(item.name.padEnd(20))} ${chalk.dim(item.description)}`);
 	}
-	console.log(chalk.dim(`\n  Run \`npx liquid-cn add <component>\` to install.\n`));
+	console.log(chalk.dim(`\n  Run \`npx @gstohl/liquidcn add <component>\` to install.\n`));
 }

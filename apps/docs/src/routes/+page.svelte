@@ -86,7 +86,7 @@
 				</Button>
 			</div>
 			<div class="mt-6">
-				<code class="glass-light rounded-lg px-4 py-2 text-sm font-mono">npx liquid-cn add button</code>
+				<code class="glass-light rounded-lg px-4 py-2 text-sm font-mono">npx @gstohl/liquidcn add button</code>
 			</div>
 		</div>
 	</header>
@@ -283,7 +283,7 @@
 				<AccordionItem value="item-2">
 					<AccordionTrigger>How do I install components?</AccordionTrigger>
 					<AccordionContent>
-						Use the CLI to add components to your project: <code class="glass-light rounded px-1.5 py-0.5 text-xs font-mono">npx liquid-cn add button</code>
+						Use the CLI to add components to your project: <code class="glass-light rounded px-1.5 py-0.5 text-xs font-mono">npx @gstohl/liquidcn add button</code>
 					</AccordionContent>
 				</AccordionItem>
 				<AccordionItem value="item-3">

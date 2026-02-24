@@ -161,5 +161,5 @@ export function cn(...inputs: ClassValue[]) {
 	}
 
 	console.log(chalk.green("\n  liquidcn initialized successfully!"));
-	console.log(chalk.dim("  Run `npx liquid-cn add button` to add your first component.\n"));
+	console.log(chalk.dim("  Run `npx @gstohl/liquidcn add button` to add your first component.\n"));
 }
