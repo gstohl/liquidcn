@@ -4,7 +4,7 @@ import chalk from "chalk";
 import prompts from "prompts";
 
 const DEFAULT_CONFIG = {
-	$schema: "https://liquidcn.dev/schema.json",
+	$schema: "https://github.com/gstohl/liquidcn",
 	tailwind: {
 		css: "./src/app.css",
 	},
@@ -14,7 +14,7 @@ const DEFAULT_CONFIG = {
 		ui: "$lib/components/ui",
 		lib: "$lib",
 	},
-	registry: "https://liquidcn.dev/r",
+	registry: "https://raw.githubusercontent.com/gstohl/liquidcn/main/apps/docs/static/r",
 };
 
 export async function init() {
@@ -161,5 +161,5 @@ export function cn(...inputs: ClassValue[]) {
 	}
 
 	console.log(chalk.green("\n  liquidcn initialized successfully!"));
-	console.log(chalk.dim("  Run `npx liquidcn add button` to add your first component.\n"));
+	console.log(chalk.dim("  Run `npx liquid-cn add button` to add your first component.\n"));
 }

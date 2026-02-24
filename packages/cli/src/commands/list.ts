@@ -6,7 +6,7 @@ export async function list() {
 	const cwd = process.cwd();
 	const configPath = join(cwd, "components.json");
 
-	let registry = "https://liquidcn.dev/r";
+	let registry = "https://raw.githubusercontent.com/gstohl/liquidcn/main/apps/docs/static/r";
 
 	if (existsSync(configPath)) {
 		const config = JSON.parse(readFileSync(configPath, "utf-8"));
@@ -35,5 +35,5 @@ export async function list() {
 	for (const item of items) {
 		console.log(`  ${chalk.cyan(item.name.padEnd(20))} ${chalk.dim(item.description)}`);
 	}
-	console.log(chalk.dim(`\n  Run \`npx liquidcn add <component>\` to install.\n`));
+	console.log(chalk.dim(`\n  Run \`npx liquid-cn add <component>\` to install.\n`));
 }

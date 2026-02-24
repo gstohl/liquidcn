@@ -1,10 +1,19 @@
 {
-  "name": "liquidcn",
+  "name": "liquid-cn",
   "version": "0.0.1",
+  "description": "Add liquid glass components to your SvelteKit project",
   "type": "module",
   "bin": {
+    "liquid-cn": "./dist/index.js",
     "liquidcn": "./dist/index.js"
   },
+  "keywords": ["svelte", "sveltekit", "ui", "components", "glass", "liquid", "tailwind", "bits-ui"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gstohl/liquidcn"
+  },
+  "homepage": "https://github.com/gstohl/liquidcn",
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --target node",
     "dev": "bun run src/index.ts"
